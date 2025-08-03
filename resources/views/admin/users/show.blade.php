@@ -13,7 +13,7 @@
                 <a href="{{ route('admin.users.edit', $user) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
                     <i class="fas fa-edit mr-2"></i> Chỉnh sửa
                 </a>
-                @if(auth()->id() != $user->id)
+                @if(\Illuminate\Support\Facades\Auth::id() != $user->id)
                     <form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
                         @csrf
                         @method('DELETE')
@@ -78,12 +78,12 @@
                             <div>{{ $user->created_at->format('d/m/Y H:i') }}</div>
                         </div>
                         <div>
-                            <span class="text-gray-600">Xác thực email:</span>
+                            <span class="text-gray-600">Vai trò:</span>
                             <div>
-                                @if($user->email_verified_at)
-                                    <span class="text-green-600">Đã xác thực lúc {{ $user->email_verified_at->format('d/m/Y H:i') }}</span>
+                                @if($user->role === 'admin')
+                                    <span class="text-purple-600 font-semibold">Admin</span>
                                 @else
-                                    <span class="text-red-600">Chưa xác thực</span>
+                                    <span class="text-blue-600">Người dùng</span>
                                 @endif
                             </div>
                         </div>

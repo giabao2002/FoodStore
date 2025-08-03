@@ -21,7 +21,7 @@
     <aside class="w-64 bg-gray-800 text-white h-screen sticky top-0 overflow-y-auto" x-data="{ open: true }">
         <div class="p-4 flex justify-between items-center">
             <a href="{{ route('admin.dashboard') }}" class="text-xl font-bold flex items-center">
-                <i class="fas fa-utensils mr-2"></i> FoodStore Admin
+                <i class="fas fa-utensils mr-2"></i> DASHBOARD
             </a>
             <button @click="open = !open" class="md:hidden text-gray-300 hover:text-white">
                 <i class="fas fa-bars"></i>
@@ -32,7 +32,7 @@
             <ul class="space-y-1">
                 <li>
                     <a href="{{ route('admin.dashboard') }}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600' : '' }}">
-                        <i class="fas fa-tachometer-alt mr-2"></i> Tổng quan
+                        <i class="fas fa-tachometer-alt mr-2"></i> Thống kê dữ liệu
                     </a>
                 </li>
 
@@ -83,7 +83,7 @@
         <!-- Header -->
         <header class="bg-white shadow">
             <div class="p-4 flex justify-between items-center">
-                <h1 class="text-xl font-semibold">{{ $title }}</h1>
+                <h1 class="text-xl font-semibold">Hệ thống cửa hàng Food Store</h1>
 
                 <div class="flex items-center space-x-4">
                     <div class="relative" x-data="{ open: false }">

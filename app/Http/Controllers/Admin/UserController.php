@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -18,7 +19,7 @@ class UserController extends Controller
         $query = User::query();
 
         // Tìm kiếm theo từ khóa
-        if ($request->has('search')) {
+        if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
@@ -28,11 +29,28 @@ class UserController extends Controller
         }
 
         // Lọc theo vai trò
-        if ($request->has('role') && $request->role !== 'all') {
+        if ($request->filled('role') && $request->role !== '') {
             $query->where('role', $request->role);
         }
 
-        $users = $query->latest()->paginate(10);
+        // Sắp xếp dữ liệu
+        if ($request->filled('sort')) {
+            $sortParams = explode('-', $request->sort);
+            if (count($sortParams) === 2) {
+                $sortField = $sortParams[0];
+                $sortDirection = $sortParams[1];
+                $query->orderBy($sortField, $sortDirection);
+            } else {
+                $query->latest();
+            }
+        } else {
+            $query->latest();
+        }
+
+        // Đếm số đơn hàng
+        $query->withCount('orders');
+
+        $users = $query->paginate(10)->withQueryString();
 
         return view('admin.users.index', compact('users'));
     }
@@ -156,7 +174,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         // Không cho phép xóa chính mình
-        if ($user->id === auth()->id) {
+        if (Auth::check() && $user->id === Auth::id()) {
             return back()->with('error', 'Bạn không thể xóa tài khoản của chính mình.');
         }
 
