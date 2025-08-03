@@ -1,0 +1,173 @@
+### 1. Đăng ký
+Mô tả: Người dùng (khách hàng) tạo tài khoản mới để sử dụng hệ thống.
+Dữ liệu đầu vào: Họ tên, email, số điện thoại, mật khẩu, xác nhận mật khẩu.
+Validate:
+  * Email phải đúng định dạng và không trùng lặp.
+  * Số điện thoại hợp lệ (10 số, đầu số đúng).
+  * Mật khẩu tối thiểu 6 ký tự, khớp với xác nhận mật khẩu.
+Xử lý:
+  * Kiểm tra tài khoản đã tồn tại.
+  * Lưu thông tin tài khoản nếu hợp lệ.
+Kết quả: Đăng ký thành công, chuyển hướng đến trang đăng nhập.
+
+### 2. Đăng nhập
+Mô tả: Người dùng đăng nhập vào hệ thống bằng email và mật khẩu.
+Dữ liệu đầu vào: Email, mật khẩu.
+Validate:
+  * Không để trống trường.
+  * Kiểm tra định dạng email.
+Xử lý:
+  * Kiểm tra tài khoản tồn tại và mật khẩu đúng.
+Kết quả:
+  * Nếu đúng: Đăng nhập thành công, chuyển đến trang chính.
+  * Nếu sai: Thông báo lỗi đăng nhập.
+
+### 3. Quên mật khẩu
+Mô tả: Người dùng lấy lại mật khẩu khi quên.
+Dữ liệu đầu vào: Email đăng ký.
+Validate:
+  * Email không được để trống và đúng định dạng.
+Xử lý:
+  * Gửi email chứa liên kết đặt lại mật khẩu hoặc mật khẩu mới.
+Kết quả: Hiển thị thông báo đã gửi email đặt lại mật khẩu.
+
+### 4. Tìm kiếm sản phẩm
+Mô tả: Người dùng tìm món ăn theo từ khóa.
+Dữ liệu đầu vào: Từ khóa (tên món ăn, loại...).
+Validate:
+  * Từ khóa không để trống.
+Xử lý:
+  * Truy vấn danh sách sản phẩm phù hợp.
+Kết quả: Hiển thị danh sách kết quả phù hợp.
+
+### 5. Xem danh sách sản phẩm
+Mô tả: Hiển thị toàn bộ món ăn theo danh mục.
+Xử lý:
+  * Truy vấn cơ sở dữ liệu theo phân trang, lọc theo danh mục.
+Kết quả: Hiển thị danh sách món ăn, giá, hình ảnh.
+
+### 6. Xem chi tiết sản phẩm
+Mô tả: Hiển thị thông tin chi tiết món ăn.
+Dữ liệu đầu vào: ID sản phẩm.
+Xử lý:
+  * Kiểm tra ID sản phẩm hợp lệ.
+  * Truy vấn chi tiết từ CSDL.
+Kết quả: Hiển thị hình ảnh, mô tả, giá, đánh giá.
+
+### 7. Quản lý thông tin cá nhân
+Mô tả: Khách hàng cập nhật thông tin cá nhân.
+Dữ liệu đầu vào: Tên, SĐT, email, địa chỉ.
+Validate:
+  * Không để trống trường bắt buộc.
+  * Kiểm tra định dạng SĐT, email.
+Xử lý: Cập nhật vào CSDL nếu hợp lệ.
+Kết qả: Hiển thị thông báo cập nhật thành công.
+
+### 8. Thống kê (Admin)
+Mô tả: Thống kê doanh thu, số đơn hàng, số khách...
+Dữ liệu đầu vào: Khoảng thời gian, danh mục.
+Xử lý:
+  * Truy vấn dữ liệu từ đơn hàng đã thanh toán.
+Kết quả: Hiển thị bảng thống kê, biểu đồ.
+
+### 9. Quản lý tài khoản (Admin)
+Mô tả: Quản trị viên quản lý tài khoản người dùng.
+Xử lý:
+  * Hiển thị danh sách tài khoản.
+  * Chỉnh sửa, khóa/mở tài khoản.
+Kết quả: Cập nhật thành công và thông báo.
+
+### 10. Quản lý đơn hàng (Admin & Khách hàng)
+Mô tả: Xem, cập nhật đơn hàng.
+Admin: Cập nhật trạng thái đơn hàng.
+Khách hàng: Xem đơn hàng đã đặt.
+Xử lý:
+  * Hiển thị danh sách, trạng thái.
+  * Cho phép hủy đơn (nếu chưa xử lý).
+Kết quả: Hiển thị trạng thái, chi tiết đơn.
+
+### 11. Quản lý danh mục (Admin)
+Mô tả: Thêm, sửa, xóa danh mục món ăn.
+Validate:
+  * Tên danh mục không để trống, không trùng.
+Xử lý: Thêm vào CSDL hoặc cập nhật/xóa.
+Kết qả: Cập nhật giao diện danh sách sản phẩm.
+
+### 12. Quản lý sản phẩm (Admin)
+Mô tả: Quản lý món ăn: thêm, sửa, xóa.
+Dữ liệu đầu vào: Tên món, giá, mô tả, ảnh, danh mục.
+Validate:
+  * Không được để trống tên, giá > 0.
+Xử lý: Lưu món ăn vào CSDL.
+Kết qả: Cập nhật danh sách món ăn.
+
+### 13. Quản lý giỏ hàng
+Mô tả: Khách hàng thêm/xóa món ăn khỏi giỏ hàng.
+Xử lý:
+  * Thêm món ăn theo số lượng.
+  * Cập nhật/xóa từng món.
+Kết quả: Hiển thị tổng tiền, danh sách món ăn.
+
+### 14. Mua hàng
+Mô tả: Đặt hàng từ giỏ hàng.
+Dữ liệu đầu vào: Thông tin nhận hàng, phương thức thanh toán.
+Validate:
+  * Kiểm tra địa chỉ, số điện thoại, giỏ hàng không rỗng.
+Xử lý:
+  * Tạo đơn hàng, gửi email, trừ tồn kho.
+Kết quả: Thông báo đặt hàng thành công.
+
+### 15. Lịch sử đơn hàng
+Mô tả: Xem lại các đơn hàng đã đặt.
+Xử lý: Lấy danh sách đơn hàng theo user.
+Kết qả: Hiển thị danh sách đơn, trạng thái.
+
+### 16. Đánh giá sản phẩm
+Mô tả: Người dùng đánh giá món đã mua.
+Dữ liệu đầu vào: Số sao, nội dung đánh giá.
+Validate:
+  * Kiểm tra user đã từng mua món đó.
+Xử lý:
+  * Lưu đánh giá vào CSDL.
+Kết quả: Hiển thị trong chi tiết sản phẩm.
+
+---------------------------------------------------------------------------------
+CÔNG NGHỆ SỬ DỤNG
+Frontend: Blade template engine kết hợp:
+Tailwind CSS (dùng CDN hoặc cài qua npm tùy theo chế độ)
+SweetAlert2 cho popup cảnh báo
+Font Awesome cho icon
+Animation CSS hoặc thư viện animation nhẹ (AOS hoặc Animate.css)
+Khuyến khích thêm: Sử dụng Laravel Blade Component hoặc View Component để chia layout, thẻ form, alert, card sản phẩm, header/footer…
+
+CÁC TÍNH NĂNG CHÍNH (có phân quyền user - admin)
+Trang người dùng
+Xem danh sách món ăn
+Xem chi tiết sản phẩm
+Thêm vào giỏ hàng
+Đặt hàng
+Đăng ký / Đăng nhập / Quản lý thông tin
+Lịch sử đơn hàng
+Đánh giá món ăn
+
+Trang quản trị
+Quản lý món ăn (CRUD)
+Quản lý danh mục
+Quản lý đơn hàng
+Thống kê doanh thu
+
+BLADE COMPONENT GỢI Ý
+Tên Component	Mục đích sử dụng
+<x-ui.button />	Nút bấm có thể tái sử dụng
+<x-ui.alert />	Hiển thị thông báo flash
+<x-ui.product-card />	Card sản phẩm trong danh sách
+<x-layouts.app />	Layout trang người dùng
+<x-layouts.admin />	Layout trang quản trị
+
+QUY ƯỚC VIẾT CODE
+Chia nhỏ logic vào controller, tránh code nhiều trong view.
+Sử dụng Request Validation trong các form.
+Dùng Route::name() cho dễ quản lý.
+Các alert dùng SweetAlert2.
+Nếu cần animation, dùng AOS hoặc Animate.css.
+Ưu tiên UI gọn, dễ nhìn, có khoảng cách, responsive.
