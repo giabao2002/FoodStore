@@ -50,10 +50,17 @@ class Category extends Model
                 return $this->image;
             }
             // Otherwise, assume it's stored in the storage/app/public directory
-            return asset('storage/' . $this->image);
+            if (file_exists(public_path('storage/' . $this->image))) {
+                return asset('storage/' . $this->image);
+            }
         }
-        
-        // Return a default image if no image is set
-        return asset('images/default-category.png');
+
+        // Kiểm tra nếu hình ảnh mặc định tồn tại
+        if (file_exists(public_path('images/default-category.png'))) {
+            return asset('images/default-category.png');
+        }
+
+        // Nếu không có hình ảnh nào, trả về null để không gây lỗi
+        return null;
     }
 }

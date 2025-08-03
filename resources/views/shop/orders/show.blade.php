@@ -48,12 +48,10 @@
                                 @endif
                             </p>
                             <p><span class="font-medium">Trạng thái thanh toán:</span>
-                                @if($order->payment_status === 'pending')
-                                    <span class="text-yellow-600">Chưa thanh toán</span>
-                                @elseif($order->payment_status === 'paid')
+                                @if($order->payment_status == 1)
                                     <span class="text-green-600">Đã thanh toán</span>
-                                @elseif($order->payment_status === 'failed')
-                                    <span class="text-red-600">Thanh toán thất bại</span>
+                                @else
+                                    <span class="text-yellow-600">Chưa thanh toán</span>
                                 @endif
                             </p>
                         </div>

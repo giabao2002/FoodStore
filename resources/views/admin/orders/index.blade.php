@@ -20,7 +20,7 @@
                     <!-- Status Filter -->
                     <div class="relative">
                         <select name="status" id="statusFilter" class="appearance-none bg-gray-100 border border-gray-300 rounded-md pl-3 pr-10 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
-                            <option value="">Tất cả trạng thái</option>
+                            <option value="">Tất cả tt đơn hàng</option>
                             <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Đang xử lý</option>
                             <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>Đang giao hàng</option>
                             <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Đã giao hàng</option>
@@ -34,7 +34,7 @@
                     <!-- Payment Status Filter -->
                     <div class="relative">
                         <select name="payment_status" id="paymentStatusFilter" class="appearance-none bg-gray-100 border border-gray-300 rounded-md pl-3 pr-10 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
-                            <option value="">Tất cả TT thanh toán</option>
+                            <option value="">Tất cả tt thanh toán</option>
                             <option value="1" {{ request('payment_status') == '1' ? 'selected' : '' }}>Đã thanh toán</option>
                             <option value="0" {{ request('payment_status') == '0' ? 'selected' : '' }}>Chưa thanh toán</option>
                         </select>

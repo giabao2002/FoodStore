@@ -76,8 +76,8 @@ class ProductController extends Controller
             ->withoutGlobalScope('active')
             ->where('is_active', true)
             ->findOrFail($id);
-            
-        // Kiểm tra nếu danh mục bị vô hiệu hóa
+
+        // Kiểm tra nếu danh mục bị ẩn
         if (!$product->category->is_active) {
             abort(404);
         }

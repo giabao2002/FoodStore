@@ -33,7 +33,7 @@
                             <i class="fas fa-chevron-down text-xs"></i>
                         </div>
                     </div>
-                    
+
                     @if(request('search') || request('category') || request('sort'))
                         <a href="{{ route('admin.products.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md flex items-center">
                             <i class="fas fa-times mr-1"></i> Xóa bộ lọc
@@ -173,8 +173,8 @@
                             <div class="relative">
                                 <select id="bulkAction" class="appearance-none bg-gray-100 border border-gray-300 rounded-md pl-3 pr-10 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
                                     <option value="">Chọn hành động</option>
-                                    <option value="activate">Kích hoạt</option>
-                                    <option value="deactivate">Vô hiệu hóa</option>
+                                    <option value="activate">Hiển thị</option>
+                                    <option value="deactivate">Ẩn</option>
                                     <option value="delete">Xóa</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

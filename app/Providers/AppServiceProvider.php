@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Sử dụng Bootstrap cho phân trang
-        Paginator::useBootstrap();
+        // Sử dụng Tailwind cho phân trang
+        Paginator::useTailwind();
 
         // Đặt độ dài mặc định cho chuỗi trong migration
         Schema::defaultStringLength(191);

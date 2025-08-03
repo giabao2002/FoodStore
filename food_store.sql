@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 03, 2025 at 02:28 PM
+-- Generation Time: Aug 03, 2025 at 05:22 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -44,10 +44,10 @@ CREATE TABLE `carts` (
 
 CREATE TABLE `categories` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -58,40 +58,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `description`, `image`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Món chính', 'mon-chinh', 'Các món ăn chính trong bữa ăn', NULL, 1, '2025-08-02 06:47:57', '2025-08-02 10:13:13'),
-(2, 'Món khai vị', 'mon-khai-vi', 'Các món ăn nhẹ trước bữa ăn chính', NULL, 1, '2025-08-02 06:47:57', '2025-08-02 09:30:57'),
-(3, 'Món tráng miệng', 'mon-trang-mieng', 'Các món ngọt sau bữa ăn', NULL, 1, '2025-08-02 06:47:57', '2025-08-02 09:30:57'),
-(4, 'Đồ uống', 'do-uong', 'Các loại nước uống', NULL, 1, '2025-08-02 06:47:57', '2025-08-02 09:30:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2025_08_02_000000_create_users_table', 1),
-(2, '2025_08_02_000001_add_fields_to_users_table', 1),
-(3, '2025_08_02_000002_create_categories_table', 1),
-(4, '2025_08_02_000003_create_products_table', 1),
-(5, '2025_08_02_000004_create_orders_table', 1),
-(6, '2025_08_02_000005_create_order_items_table', 1),
-(7, '2025_08_02_000006_create_reviews_table', 1),
-(8, '2025_08_02_000007_create_carts_table', 1),
-(9, '2025_08_02_000010_create_order_histories_table', 1),
-(10, '2025_08_02_000003_add_is_active_to_categories_table', 2),
-(11, '2025_08_02_000004_add_is_active_to_products_table', 3),
-(12, '2025_08_03_000001_add_product_name_to_order_items', 4);
+(1, 'Món chính', 'mn-chnh', 'Các món ăn chính trong bữa ăn', 'categories/gvjViKXhCct0y8VmbQ4igJCg2sW7HWesfiYslkOC.png', 1, '2025-08-03 09:30:39', '2025-08-03 09:30:39'),
+(2, 'Món khai vị', 'mn-khai-v', 'Các món ăn nhẹ trước bữa ăn chính', 'categories/CBGDdl9ckpYH1YTpiQ2lgFU277F8OHVnbaBqLIAq.png', 1, '2025-08-03 09:33:07', '2025-08-03 09:33:07'),
+(3, 'Món tráng miệng', 'mn-trng-ming', 'Các món ngọt sau bữa ăn', 'categories/UUZGaZrCaS5baX67djyRVixDXkVN2KPF6ZFOJ5ye.png', 1, '2025-08-03 09:34:13', '2025-08-03 09:34:13'),
+(4, 'Đồ uống', 'ung', 'Các loại nước uống', 'categories/fntCKycUqGJPar3n2OY2SAU98nL1BmzIatjotsLi.png', 1, '2025-08-03 09:35:40', '2025-08-03 10:19:03');
 
 -- --------------------------------------------------------
 
@@ -102,20 +72,20 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `orders` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
-  `order_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('pending','processing','completed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
-  `payment_method` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'cod',
+  `order_number` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('pending','processing','completed','cancelled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `payment_method` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'cod',
   `payment_status` tinyint(1) NOT NULL DEFAULT '0',
   `subtotal` decimal(10,2) NOT NULL,
   `shipping_fee` decimal(10,2) NOT NULL,
   `discount` decimal(10,2) NOT NULL DEFAULT '0.00',
   `total` decimal(10,2) NOT NULL,
-  `note` text COLLATE utf8mb4_unicode_ci,
+  `note` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -130,8 +100,8 @@ CREATE TABLE `order_histories` (
   `id` bigint UNSIGNED NOT NULL,
   `order_id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `data` json DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -149,7 +119,7 @@ CREATE TABLE `order_items` (
   `product_id` bigint UNSIGNED NOT NULL,
   `quantity` int NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -162,11 +132,11 @@ CREATE TABLE `order_items` (
 
 CREATE TABLE `products` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `price` decimal(10,2) NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_id` bigint UNSIGNED NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -178,14 +148,22 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `slug`, `description`, `price`, `image`, `category_id`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Cơm rang dương châu', 'com-rang-duong-chau', 'Cơm rang dương châu với nhiều loại thịt và rau củ', 50000.00, NULL, 1, 1, '2025-08-02 06:47:57', '2025-08-03 07:23:39'),
-(2, 'Phở bò', 'pho-bo', 'Phở bò truyền thống với nước dùng ngon', 45000.00, NULL, 2, 1, '2025-08-02 06:47:57', '2025-08-03 07:23:39'),
-(3, 'Bún bò Huế', 'bun-bo-hue', 'Bún bò Huế cay nồng đặc trưng', 55000.00, NULL, 3, 1, '2025-08-02 06:47:57', '2025-08-03 02:26:18'),
-(4, 'Gỏi cuốn', 'goi-cuon', 'Gỏi cuốn tôm thịt với rau sống và bún', 35000.00, NULL, 2, 1, '2025-08-02 06:47:57', '2025-08-03 02:20:49'),
-(5, 'Chả giò', 'cha-gio', 'Chả giò giòn rụm với nhân thịt và nấm', 40000.00, NULL, 2, 1, '2025-08-02 06:47:57', '2025-08-03 02:26:18'),
-(6, 'Chè thái', 'che-thai', 'Chè thái ngọt mát với nhiều loại trái cây', 25000.00, NULL, 3, 1, '2025-08-02 06:47:57', '2025-08-03 02:26:10'),
-(7, 'Bánh flan', 'banh-flan', 'Bánh flan mềm mịn với caramel', 20000.00, NULL, 3, 1, '2025-08-02 06:47:57', '2025-08-03 02:20:49'),
-(8, 'Trà đào', 'tra-dao', 'Trà đào thanh mát với đào tươi', 30000.00, NULL, 4, 1, '2025-08-02 06:47:57', '2025-08-03 02:26:18');
+(1, 'Cơm rang dương châu', 'cm-rang-dng-chu', 'Cơm rang dương châu với nhiều loại thịt và rau củ', 50000.00, 'products/7fe0XbswSwtw1u1MNkQYwoCU9dr0OUdBK4VIGTAj.png', 1, 1, '2025-08-03 09:58:59', '2025-08-03 09:58:59'),
+(2, 'Cơm gà xối mỡ', 'cm-g-xi-m', 'Cơm chiên vàng giòn, ăn kèm đùi gà chiên giòn rụm, rưới nước mỡ gà thơm béo.', 45000.00, 'products/OViCsvVNSzVyMO2tKL43HEbEV1IwlyZQBuIdQrZu.png', 1, 1, '2025-08-03 10:01:25', '2025-08-03 10:01:25'),
+(3, 'Bún chả Hà Nội', 'bn-ch-h-ni', 'Bún tươi ăn cùng chả nướng thơm lừng, nước mắm pha chua ngọt kèm rau sống.', 35000.00, 'products/jJZaLQjBLXmJZQiNNzIKEGjXAKFWzQOmA71pGNAM.png', 1, 1, '2025-08-03 10:02:27', '2025-08-03 10:02:27'),
+(4, 'Mì xào hải sản', 'm-xo-hi-sn', 'Mì trứng xào dai giòn với tôm, mực, rau củ, sốt đậm đà hấp dẫn.', 55000.00, 'products/AdLq5fKwVcVqPhi7u80ACeyMr7OCEakYOqbnUVqp.png', 1, 1, '2025-08-03 10:03:04', '2025-08-03 10:03:04'),
+(5, 'Gỏi cuốn tôm thịt', 'gi-cun-tm-tht', 'Bánh tráng cuốn tôm, thịt, bún, rau sống, chấm mắm nêm đậm đà.', 35000.00, 'products/ZDhrXITRLBjhYjjM6BTfKN0xOTfnnuBiqqY4aAQI.png', 2, 1, '2025-08-03 10:03:40', '2025-08-03 10:03:40'),
+(6, 'Chả giò rế', 'ch-gi-r', 'Chả giò vỏ rế giòn tan, nhân thịt băm, miến, nấm mèo, ăn kèm rau và nước mắm chua ngọt.', 40000.00, 'products/exp5xxH9zVms58hXAECe0jAFmAzAtZcrMZqBoYXf.png', 2, 1, '2025-08-03 10:04:22', '2025-08-03 10:04:22'),
+(7, 'Súp cua trứng bắc thảo', 'sp-cua-trng-bc-tho', 'Súp sánh mịn, kết hợp cua xé, trứng bắc thảo và ngò thơm.', 50000.00, 'products/GYrXfAQbrYSsKwrOBs9FHrrTLpdJJpsjC9JNvkHf.png', 2, 1, '2025-08-03 10:04:57', '2025-08-03 10:04:57'),
+(8, 'Khoai tây chiên phô mai', 'khoai-ty-chin-ph-mai', 'Khoai tây giòn tan phủ lớp phô mai béo ngậy, thích hợp làm món ăn nhẹ.', 25000.00, 'products/HwiThuPSmSTOYILaI5osMevg3imIjQr746YqkQFQ.png', 2, 1, '2025-08-03 10:05:57', '2025-08-03 10:05:57'),
+(9, 'Chè khúc bạch', 'ch-khc-bch', 'Chè lạnh với khúc bạch mềm mịn, hạnh nhân rang và trái cây tươi.', 25000.00, 'products/t4uzRCArhwV8ZBfrwgfRaxnoPoReGvWMrBYHmjHC.png', 3, 1, '2025-08-03 10:06:36', '2025-08-03 10:06:36'),
+(10, 'Bánh flan caramel', 'bnh-flan-caramel', 'Bánh flan mềm mịn, phủ lớp caramel đắng nhẹ, tan trong miệng.', 25000.00, 'products/vvAQvagoIh0rpuSQ5cTQpWpeYSAqzzgiNmsDWUNC.png', 3, 1, '2025-08-03 10:07:17', '2025-08-03 10:07:17'),
+(11, 'Sữa chua nếp cẩm', 'sa-chua-np-cm', 'Sữa chua dẻo kết hợp nếp cẩm dẻo thơm, vị chua ngọt hài hòa.', 15000.00, 'products/IzGHoNHyESCJqXbm81jBnHYjQxQYJb4naevyHTv4.png', 3, 1, '2025-08-03 10:09:24', '2025-08-03 10:09:24'),
+(12, 'Kem dừa Thái', 'kem-da-thi', 'Kem dừa mát lạnh, ăn kèm topping thạch dừa, đậu phộng và dừa sợi.', 30000.00, 'products/6f5yH1V8GYa8iP5UBTcg41IF3QuHXZOthLRVrbGw.png', 3, 1, '2025-08-03 10:10:07', '2025-08-03 10:10:07'),
+(13, 'Trà đào cam sả', 'tr-o-cam-s', 'Trà đen thơm mùi đào, kết hợp cam tươi và sả, vị chua ngọt thanh mát.', 30000.00, 'products/KPa9QzD6QU9JpPdbcH6WCPIene94g4UOlZnVTUS6.png', 4, 1, '2025-08-03 10:10:57', '2025-08-03 10:10:57'),
+(14, 'Sữa tươi trân châu đường đen', 'sa-ti-trn-chu-ng-en', 'Sữa tươi béo nhẹ kết hợp trân châu dai và sốt đường đen thơm lừng.', 30000.00, 'products/P0eHAPqyvVJm5vv0GhqDiL9kh5WFW2jAD8i4hhz1.png', 4, 1, '2025-08-03 10:11:43', '2025-08-03 10:11:43'),
+(15, 'Nước ép dưa hấu bạc hà', 'nc-p-da-hu-bc-h', 'Dưa hấu tươi ép lạnh, thêm chút bạc hà tạo cảm giác mát lạnh sảng khoái.', 25000.00, 'products/jBKylyh0LrpIJnNrnqOgjFa85JZilNRMUbVOa2uN.png', 4, 1, '2025-08-03 10:12:18', '2025-08-03 10:12:18'),
+(16, 'Sinh tố bơ sữa', 'sinh-t-b-sa', 'Bơ sáp xay cùng sữa đặc và đá, tạo thành ly sinh tố béo ngậy, bổ dưỡng.', 25000.00, 'products/g89c3IbTCBLGTJNIKa8HZ4Rve6d6jHA6fPwZ4a8l.png', 4, 1, '2025-08-03 10:13:01', '2025-08-03 10:13:01');
 
 -- --------------------------------------------------------
 
@@ -198,7 +176,7 @@ CREATE TABLE `reviews` (
   `user_id` bigint UNSIGNED NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
   `rating` int NOT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci,
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -211,14 +189,12 @@ CREATE TABLE `reviews` (
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role` enum('user','admin') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` enum('user','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -227,10 +203,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', '0123456789', 'Cầu Giấy, Hà Nội', 'admin', '2025-08-02 06:47:56', '$2y$12$AnUqbaflnB0LDjzOAhB/y.uneY6eJpWZIUBw31W6igxUr9DNxiTjK', NULL, '2025-08-02 06:47:56', '2025-08-02 07:57:47'),
-(2, 'Nguyễn Văn A', 'user1@gmail.com', '0123456789', 'Địa chỉ của Người dùng', 'user', '2025-08-02 06:47:57', '$2y$12$AnUqbaflnB0LDjzOAhB/y.uneY6eJpWZIUBw31W6igxUr9DNxiTjK', NULL, '2025-08-02 06:47:57', '2025-08-02 06:47:57'),
-(3, 'Nguyễn Văn B', 'user2@gmail.com', '0123456789', NULL, 'user', NULL, '$2y$12$AnUqbaflnB0LDjzOAhB/y.uneY6eJpWZIUBw31W6igxUr9DNxiTjK', NULL, '2025-08-02 07:12:27', '2025-08-03 02:29:35');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `role`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', '0123456789', 'Đống Đa, Hà Nội', 'admin', '$2y$12$N4h8/LOS6ZwoObSzAbgUUuqzngloQAB4oOHptE3gDgcqQw5hXELyK', '2025-08-03 09:19:23', '2025-08-03 10:21:39'),
+(2, 'Nguyễn Văn A', 'user1@gmail.com', '0123456789', 'Nam Từ Liêm, Hà Nội', 'user', '$2y$12$gOe0bx7ODwPE7PONDJ/tg.Nzz2J1KRBWP6ZNjNsAVt6bDK0/v1QiO', '2025-08-03 09:20:30', '2025-08-03 10:21:22'),
+(3, 'Nguyễn Văn B', 'user2@gmail.com', '0123456789', 'Thanh Xuân, Hà Nội', 'user', '$2y$12$0Jc8mv7L69cfTmctvQrhK.HMuA99dMYaUjX6iwbZrvAuxGiuWiudK', '2025-08-03 09:20:53', '2025-08-03 10:21:03');
 
 --
 -- Indexes for dumped tables
@@ -250,12 +226,6 @@ ALTER TABLE `carts`
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `orders`
@@ -312,43 +282,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_histories`
 --
 ALTER TABLE `order_histories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `reviews`

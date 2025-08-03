@@ -94,7 +94,7 @@
                         <div class="mt-2 space-y-2 text-gray-600">
                             <p><span class="font-medium">SKU:</span> {{ $product->sku ?? 'Chưa cập nhật' }}</p>
                             <p><span class="font-medium">Trọng lượng:</span> {{ $product->weight ? $product->weight . 'g' : 'Chưa cập nhật' }}</p>
-                            <p><span class="font-medium">Kích thước:</span> 
+                            <p><span class="font-medium">Kích thước:</span>
                                 @if($product->length && $product->width && $product->height)
                                     {{ $product->length }} x {{ $product->width }} x {{ $product->height }} cm
                                 @else

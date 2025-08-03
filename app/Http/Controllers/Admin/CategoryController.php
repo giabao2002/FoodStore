@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $query = Category::withoutGlobalScope('active')->withCount('products');
-        
+
         // Tìm kiếm theo từ khóa
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
@@ -26,12 +26,12 @@ class CategoryController extends Controller
                   ->orWhere('description', 'like', "%{$search}%");
             });
         }
-        
+
         // Lọc theo trạng thái
         if ($request->has('status') && $request->status !== 'all') {
             $query->where('is_active', $request->status === 'active');
         }
-        
+
         // Sắp xếp
         $sort = $request->input('sort', 'newest');
         switch ($sort) {
@@ -52,7 +52,7 @@ class CategoryController extends Controller
                 $query->latest();
                 break;
         }
-        
+
         $categories = $query->paginate(10)->withQueryString();
         return view('admin.categories.index', compact('categories'));
     }
@@ -76,6 +76,9 @@ class CategoryController extends Controller
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['name']);
         }
+
+        // Xử lý is_active
+        $data['is_active'] = $request->has('is_active');
 
         // Xử lý hình ảnh
         if ($request->hasFile('image')) {
@@ -106,6 +109,9 @@ class CategoryController extends Controller
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['name']);
         }
+
+        // Xử lý is_active
+        $data['is_active'] = $request->has('is_active');
 
         // Xử lý hình ảnh
         if ($request->hasFile('image')) {
@@ -162,14 +168,14 @@ class CategoryController extends Controller
                 $categories = Category::withoutGlobalScope('active')
                     ->whereIn('id', $selectedIds)
                     ->get();
-                
+
                 // Xóa ảnh trước khi xóa danh mục
                 foreach ($categories as $category) {
                     if ($category->image) {
                         Storage::disk('public')->delete($category->image);
                     }
                 }
-                
+
                 // Xóa danh mục
                 Category::withoutGlobalScope('active')
                     ->whereIn('id', $selectedIds)

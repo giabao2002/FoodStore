@@ -79,16 +79,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="md:col-span-2 border-t pt-4">
-                            <div class="flex items-center">
-                                <input id="email_verified" name="email_verified" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" {{ $user->email_verified_at ? 'checked' : '' }}>
-                                <label for="email_verified" class="ml-2 block text-sm text-gray-900">
-                                    Email đã được xác thực
-                                </label>
-                            </div>
-                            <p class="mt-1 text-sm text-gray-500">Đánh dấu vào ô này để xác thực email của người dùng</p>
-                        </div>
                     </div>
 
                     <div class="mt-6 flex justify-end">

@@ -71,16 +71,6 @@
                             <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Xác nhận mật khẩu</label>
                             <input type="password" id="password_confirmation" name="password_confirmation" required class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
-
-                        <div class="md:col-span-2">
-                            <div class="flex items-center">
-                                <input id="email_verified" name="email_verified" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" {{ old('email_verified') ? 'checked' : '' }}>
-                                <label for="email_verified" class="ml-2 block text-sm text-gray-900">
-                                    Email đã được xác thực
-                                </label>
-                            </div>
-                            <p class="mt-1 text-sm text-gray-500">Đánh dấu vào ô này để xác thực email của người dùng</p>
-                        </div>
                     </div>
 
                     <div class="mt-6 flex justify-end">

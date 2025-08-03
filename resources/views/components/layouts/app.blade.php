@@ -173,10 +173,10 @@
                     <h3 class="text-xl font-bold mb-4">Thông tin liên hệ</h3>
                     <ul class="space-y-2">
                         <li>
-                            <i class="fas fa-map-marker-alt mr-2"></i> 123 Đường ABC, Quận XYZ, TP. HCM
+                            <i class="fas fa-map-marker-alt mr-2"></i> 123 Đường ABC, Quận XYZ, Hà Nội
                         </li>
                         <li>
-                            <i class="fas fa-phone-alt mr-2"></i> (028) 1234 5678
+                            <i class="fas fa-phone-alt mr-2"></i> (+84) 1234 5678
                         </li>
                         <li>
                             <i class="fas fa-envelope mr-2"></i> info@foodstore.com

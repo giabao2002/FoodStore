@@ -26,13 +26,14 @@ class CategoryRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_active' => 'nullable|boolean',
         ];
 
         if ($this->isMethod('post')) {
-            $rules['slug'] = 'required|string|unique:categories,slug';
+            $rules['slug'] = 'nullable|string|unique:categories,slug';
         } else {
             $rules['slug'] = [
-                'required',
+                'nullable',
                 'string',
                 Rule::unique('categories')->ignore($this->category),
             ];
