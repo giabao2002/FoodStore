@@ -11,7 +11,6 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -47,11 +46,8 @@ class OrderController extends Controller
         $user = Auth::user();
         $userId = $user->id;
 
-        Log::info('Checkout - User ID: ' . $userId);
-
-        // Debug giỏ hàng
+        // Lấy giỏ hàng
         $cartItems = Cart::where('user_id', $userId)->with('product')->get();
-        Log::info('Checkout - Cart items count: ' . $cartItems->count());
 
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Giỏ hàng của bạn đang trống.');
@@ -73,19 +69,15 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-        // Debug thông tin người dùng
+        // Kiểm tra đăng nhập
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để tiếp tục thanh toán.');
         }
 
         $user = Auth::user();
 
-        // Debug và hiển thị thông tin người dùng
-        Log::info('User ID: ' . $user->id);
-
-        // Debug giỏ hàng với user_id
+        // Lấy giỏ hàng
         $cartItems = Cart::where('user_id', $user->id)->with('product')->get();
-        Log::info('Cart items count: ' . $cartItems->count());
 
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Giỏ hàng của bạn đang trống.');

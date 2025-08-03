@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Shop\CartController;
-use App\Http\Controllers\Shop\CartTestController;
 use App\Http\Controllers\Shop\OrderController;
 use App\Http\Controllers\Shop\ProductController;
 use App\Http\Controllers\User\ProfileController;
@@ -48,10 +47,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
-
-
-    // Kiểm tra giỏ hàng (debug route)
-    Route::get('/cart-test', [CartTestController::class, 'test'])->name('cart.test');
 
     // Đơn hàng
     Route::prefix('orders')->name('shop.orders.')->group(function () {
@@ -101,6 +96,3 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\AdminMiddleware
     // Quản lý người dùng
     Route::resource('users', UserController::class);
 });
-
-// Test route
-Route::get('/test-admin', [App\Http\Controllers\TestController::class, 'testAdmin'])->middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->name('test.admin');
