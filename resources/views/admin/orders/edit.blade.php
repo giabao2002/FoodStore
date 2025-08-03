@@ -38,7 +38,7 @@
                                 <div>
                                     <label for="payment_status" class="block text-sm font-medium text-gray-700 mb-1">Trạng thái thanh toán</label>
                                     <select id="payment_status" name="payment_status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
-                                        <option value="0" {{ $order->payment_status == 0 ? 'selected' : '' }}>Chưa thanh toán</option>
+                                        <option value="0" {{ $order->payment_status == 0 ? 'selected' : '' }}>Chờ xác nhận</option>
                                         <option value="1" {{ $order->payment_status == 1 ? 'selected' : '' }}>Đã thanh toán</option>
                                     </select>
                                     @error('payment_status')

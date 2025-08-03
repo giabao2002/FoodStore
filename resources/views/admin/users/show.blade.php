@@ -272,7 +272,7 @@
                                         @if($order->payment_status)
                                             <span class="ml-1 text-green-600">(Đã thanh toán)</span>
                                         @else
-                                            <span class="ml-1 text-yellow-600">(Chưa thanh toán)</span>
+                                            <span class="ml-1 text-yellow-600">(Chờ xác nhận)</span>
                                         @endif
                                     </div>
                                 </td>

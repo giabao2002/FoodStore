@@ -111,10 +111,10 @@
                                     <div class="flex justify-between">
                                         <dt class="text-gray-600">Trạng thái thanh toán:</dt>
                                         <dd>
-                                            @if($order->payment_status == 1)
+                                            @if($order->payment_status)
                                                 <span class="text-green-600">Đã thanh toán</span>
                                             @else
-                                                <span class="text-yellow-600">Chưa thanh toán</span>
+                                                <span class="text-yellow-600">Chờ xác nhận</span>
                                             @endif
                                         </dd>
                                     </div>

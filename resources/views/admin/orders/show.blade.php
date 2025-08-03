@@ -81,7 +81,7 @@
                                 @if($order->payment_status)
                                     <span class="text-green-600">Đã thanh toán</span>
                                 @else
-                                    <span class="text-yellow-600">Chưa thanh toán</span>
+                                    <span class="text-yellow-600">Chờ xác nhận</span>
                                 @endif
                             </span>
                         </div>
@@ -323,7 +323,7 @@
                                                         @if($history->data['payment_status'])
                                                             Đơn hàng đã được thanh toán
                                                         @else
-                                                            Đơn hàng chưa thanh toán
+                                                            Đơn hàng chờ xác nhận
                                                         @endif
                                                     @else
                                                         {{ $history->status }}
@@ -391,7 +391,7 @@
                     @csrf
                     @method('PATCH')
                     <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md flex items-center justify-center">
-                        <i class="fas fa-times-circle mr-2"></i> Đánh dấu chưa thanh toán
+                        <i class="fas fa-times-circle mr-2"></i> Đánh dấu chờ xác nhận
                     </button>
                 </form>
             @endif

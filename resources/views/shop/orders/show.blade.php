@@ -51,7 +51,7 @@
                                 @if($order->payment_status == 1)
                                     <span class="text-green-600">Đã thanh toán</span>
                                 @else
-                                    <span class="text-yellow-600">Chưa thanh toán</span>
+                                    <span class="text-yellow-600">Chờ xác nhận</span>
                                 @endif
                             </p>
                         </div>

@@ -36,7 +36,7 @@
                         <select name="payment_status" id="paymentStatusFilter" class="appearance-none bg-gray-100 border border-gray-300 rounded-md pl-3 pr-10 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
                             <option value="">Tất cả tt thanh toán</option>
                             <option value="1" {{ request('payment_status') == '1' ? 'selected' : '' }}>Đã thanh toán</option>
-                            <option value="0" {{ request('payment_status') == '0' ? 'selected' : '' }}>Chưa thanh toán</option>
+                            <option value="0" {{ request('payment_status') == '0' ? 'selected' : '' }}>Chờ xác nhận</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <i class="fas fa-chevron-down text-xs"></i>
@@ -102,7 +102,7 @@
 
                     @if(request('payment_status'))
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                        Trạng thái thanh toán: {{ request('payment_status') == '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}
+                        Trạng thái thanh toán: {{ request('payment_status') == '1' ? 'Đã thanh toán' : 'Chờ xác nhận' }}
                     </span>
                     @endif
 
@@ -198,7 +198,7 @@
                                         </span>
                                     @else
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Chưa thanh toán
+                                            Chờ xác nhận
                                         </span>
                                     @endif
                                 </td>
@@ -261,7 +261,7 @@
                                     <option value="completed">Đánh dấu: Đã giao hàng</option>
                                     <option value="cancelled">Đánh dấu: Đã hủy</option>
                                     <option value="mark_paid">Đánh dấu: Đã thanh toán</option>
-                                    <option value="mark_unpaid">Đánh dấu: Chưa thanh toán</option>
+                                    <option value="mark_unpaid">Đánh dấu: Chờ xác nhận</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                     <i class="fas fa-chevron-down text-xs"></i>

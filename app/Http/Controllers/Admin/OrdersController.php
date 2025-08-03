@@ -180,7 +180,7 @@ class OrdersController extends Controller
                     'status' => 'payment_status_changed',
                     'comment' => $validated['payment_status']
                         ? "Đơn hàng đã được đánh dấu là đã thanh toán"
-                        : "Đơn hàng đã được đánh dấu là chưa thanh toán",
+                        : "Đơn hàng đã được đánh dấu là chờ xác nhận",
                     'data' => [
                         'payment_status' => $validated['payment_status'],
                     ],
@@ -283,7 +283,7 @@ class OrdersController extends Controller
                 'order_id' => $order->id,
                 'user_id' => auth()->id ?? null,
                 'status' => 'payment_status_changed',
-                'comment' => "Đơn hàng đã được đánh dấu là chưa thanh toán",
+                'comment' => "Đơn hàng đã được đánh dấu là chờ xác nhận",
                 'data' => [
                     'payment_status' => false,
                 ],
@@ -292,7 +292,7 @@ class OrdersController extends Controller
             DB::commit();
 
             return redirect()->back()
-                ->with('success', 'Đơn hàng đã được đánh dấu là chưa thanh toán');
+                ->with('success', 'Đơn hàng đã được đánh dấu là chờ xác nhận');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withErrors(['message' => 'Đã xảy ra lỗi: ' . $e->getMessage()]);
@@ -412,12 +412,12 @@ class OrdersController extends Controller
                             'order_id' => $orderId,
                             'user_id' => auth()->id ?? null,
                             'status' => 'payment_status_changed',
-                            'comment' => 'Đơn hàng đã được đánh dấu là chưa thanh toán (bulk update)',
+                            'comment' => 'Đơn hàng đã được đánh dấu là chờ xác nhận (bulk update)',
                             'data' => ['payment_status' => false, 'bulk_update' => true],
                         ]);
                     }
 
-                    $message = "{$count} đơn hàng đã được đánh dấu là chưa thanh toán";
+                    $message = "{$count} đơn hàng đã được đánh dấu là chờ xác nhận";
                     break;
             }
 
