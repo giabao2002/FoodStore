@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Shop\CartController;
 use App\Http\Controllers\Shop\OrderController;
 use App\Http\Controllers\Shop\ProductController;
+use App\Http\Controllers\Shop\ReviewController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,7 +59,12 @@ Route::middleware('auth')->group(function () {
     });
 
     // Đánh giá sản phẩm
-    Route::post('/products/{product}/reviews', [ProductController::class, 'review'])->name('products.review');
+    Route::prefix('reviews')->name('shop.reviews.')->group(function () {
+        Route::get('/order-items/{orderItem}/create', [ReviewController::class, 'create'])->name('create');
+        Route::post('/order-items/{orderItem}', [ReviewController::class, 'store'])->name('store');
+        Route::get('/order-items/{orderItem}/edit', [ReviewController::class, 'edit'])->name('edit');
+        Route::put('/order-items/{orderItem}', [ReviewController::class, 'update'])->name('update');
+    });
 });
 
 // Admin Routes

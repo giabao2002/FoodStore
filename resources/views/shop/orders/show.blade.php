@@ -12,18 +12,14 @@
 
                 @if($order->status === 'pending')
                     <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                        Đang chờ xử lý
+                        Đang xử lý
                     </span>
                 @elseif($order->status === 'processing')
                     <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                        Đang xử lý
-                    </span>
-                @elseif($order->status === 'shipped')
-                    <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
                         Đang giao hàng
                     </span>
-                @elseif($order->status === 'delivered')
-                    <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                @elseif($order->status === 'completed')
+                    <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
                         Đã giao hàng
                     </span>
                 @elseif($order->status === 'cancelled')
@@ -40,6 +36,14 @@
                         <div class="text-sm text-gray-700 space-y-2">
                             <p><span class="font-medium">Mã đơn hàng:</span> {{ $order->order_number }}</p>
                             <p><span class="font-medium">Ngày đặt hàng:</span> {{ $order->created_at->format('d/m/Y H:i') }}</p>
+                            {{-- trạng thái đơn hàng --}}
+                            <p><span class="font-medium">Trạng thái đơn hàng:</span>
+                                @if($order->status === 'pending') Đang xử lý
+                                @elseif($order->status === 'processing') Đang giao hàng
+                                @elseif($order->status === 'completed') Đã giao hàng
+                                @elseif($order->status === 'cancelled') Đã hủy
+                                @else {{ $order->status }}
+                                @endif
                             <p><span class="font-medium">Phương thức thanh toán:</span>
                                 @if($order->payment_method === 'cod') Thanh toán khi nhận hàng (COD)
                                 @elseif($order->payment_method === 'bank_transfer') Chuyển khoản ngân hàng
@@ -77,6 +81,9 @@
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Đơn giá</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Số lượng</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thành tiền</th>
+                                @if($order->status === 'completed')
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Đánh giá</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -115,6 +122,19 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
                                         {{ number_format($item->price * $item->quantity, 0, ',', '.') }}đ
                                     </td>
+                                    @if($order->status === 'completed')
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                        @if($item->review)
+                                            <a href="{{ route('shop.reviews.edit', $item->id) }}" class="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-800 rounded-md hover:bg-green-200 transition duration-200">
+                                                <i class="fas fa-edit mr-1"></i> Chỉnh sửa đánh giá
+                                            </a>
+                                        @else
+                                            <a href="{{ route('shop.reviews.create', $item->id) }}" class="inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-800 rounded-md hover:bg-blue-200 transition duration-200">
+                                                <i class="fas fa-star mr-1"></i> Đánh giá
+                                            </a>
+                                        @endif
+                                    </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

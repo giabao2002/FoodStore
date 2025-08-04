@@ -11,19 +11,16 @@ class ReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // Kiểm tra xem người dùng đã mua sản phẩm này chưa
+        // Kiểm tra xem đơn hàng đã giao hàng và thuộc về người dùng hiện tại
         $user = $this->user();
-        $productId = $this->route('product');
+        $orderItemId = $this->route('orderItem');
 
-        // Kiểm tra trong các đơn hàng đã hoàn thành của người dùng
-        $hasPurchased = $user->orders()
+        return $user->orders()
             ->where('status', 'completed')
-            ->whereHas('orderItems', function ($query) use ($productId) {
-                $query->where('product_id', $productId);
+            ->whereHas('orderItems', function ($query) use ($orderItemId) {
+                $query->where('id', $orderItemId);
             })
             ->exists();
-
-        return $hasPurchased;
     }
 
     /**

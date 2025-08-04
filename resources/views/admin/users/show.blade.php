@@ -104,7 +104,7 @@
                                 <div class="text-2xl font-bold mt-1">{{ $orderStats['total'] }}</div>
                             </div>
                             <div class="bg-green-50 p-4 rounded-lg">
-                                <div class="text-green-600 text-sm font-medium">Đã hoàn thành</div>
+                                <div class="text-green-600 text-sm font-medium">Đã giao hàng</div>
                                 <div class="text-2xl font-bold mt-1">{{ $orderStats['completed'] }}</div>
                             </div>
                             <div class="bg-yellow-50 p-4 rounded-lg">

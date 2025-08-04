@@ -45,14 +45,6 @@
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                     @enderror
                                 </div>
-
-                                <div>
-                                    <label for="admin_comment" class="block text-sm font-medium text-gray-700 mb-1">Ghi chú nội bộ</label>
-                                    <textarea id="admin_comment" name="admin_comment" rows="3" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Thêm ghi chú cho đơn hàng (chỉ admin nhìn thấy)">{{ $order->admin_comment }}</textarea>
-                                    @error('admin_comment')
-                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
-                                </div>
                             </div>
                         </div>
 

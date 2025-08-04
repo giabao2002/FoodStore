@@ -40,4 +40,12 @@ class OrderItem extends Model
     {
         return $this->quantity * $this->price;
     }
+
+    /**
+     * Lấy thông tin đánh giá của sản phẩm trong đơn hàng
+     */
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
 }

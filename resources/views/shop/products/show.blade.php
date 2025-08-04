@@ -118,23 +118,12 @@
                         @auth
                             <div class="mb-8 p-4 bg-gray-50 rounded-lg">
                                 <h3 class="text-lg font-bold mb-4">Đánh giá sản phẩm</h3>
-                                <form action="{{ route('products.review', $product) }}" method="POST">
-                                    @csrf
-                                    <div class="mb-4">
-                                        <label class="block mb-2">Đánh giá của bạn:</label>
-                                        <div class="flex text-2xl rating-stars">
-                                            @for ($i = 1; $i <= 5; $i++)
-                                                <i class="far fa-star cursor-pointer text-yellow-400 px-1" data-rating="{{ $i }}"></i>
-                                            @endfor
-                                        </div>
-                                        <input type="hidden" name="rating" value="5">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="comment" class="block mb-2">Nhận xét:</label>
-                                        <textarea id="comment" name="comment" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" required></textarea>
-                                    </div>
-                                    <x-ui.button type="submit" color="primary">Gửi đánh giá</x-ui.button>
-                                </form>
+                                <p class="text-gray-700 mb-4">
+                                    Sau khi đơn hàng hoàn thành, bạn có thể đánh giá sản phẩm trong đơn hàng từ trang "Chi tiết đơn hàng".
+                                </p>
+                                <a href="{{ route('shop.orders.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+                                    Xem đơn hàng của tôi
+                                </a>
                             </div>
                         @else
                             <div class="mb-8 p-4 bg-gray-50 rounded-lg text-center">

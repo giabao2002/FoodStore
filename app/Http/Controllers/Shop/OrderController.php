@@ -171,7 +171,7 @@ class OrderController extends Controller
         $order = Order::where('user_id', Auth::id())
             ->findOrFail($id);
 
-        // Chỉ cho phép hủy đơn hàng ở trạng thái "đang chờ xử lý"
+        // Chỉ cho phép hủy đơn hàng ở trạng thái "đang xử lý"
         if ($order->status !== 'pending') {
             return back()->with('error', 'Không thể hủy đơn hàng ở trạng thái hiện tại.');
         }

@@ -67,11 +67,20 @@ class Order extends Model
     public function getStatusTextAttribute()
     {
         return match ($this->status) {
-            'pending' => 'Đang chờ xử lý',
+            'pending' => 'Đang xử lý',
             'processing' => 'Đang xử lý',
-            'completed' => 'Đã hoàn thành',
+            'shipped' => 'Đang giao hàng',
+            'completed' => 'Đã giao hàng',
             'cancelled' => 'Đã hủy',
             default => 'Không xác định',
         };
+    }
+
+    /**
+     * Kiểm tra xem đơn hàng đã giao hàng chưa
+     */
+    public function getIsCompletedAttribute()
+    {
+        return $this->status === 'completed';
     }
 }

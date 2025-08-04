@@ -16,7 +16,6 @@
                     <div class="flex items-center justify-between pb-4 border-b">
                         <div class="flex-1">
                             <h2 class="text-xl font-semibold text-gray-700">Thông tin cá nhân</h2>
-                            <p class="text-sm text-gray-500 mt-1">Thông tin chi tiết về tài khoản của bạn.</p>
                         </div>
                         <a href="{{ route('profile.edit') }}" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm font-medium transition duration-300">
                             Chỉnh sửa
@@ -51,7 +50,6 @@
                 <div class="mb-6">
                     <div class="pb-4 border-b">
                         <h2 class="text-xl font-semibold text-gray-700">Đơn hàng gần đây</h2>
-                        <p class="text-sm text-gray-500 mt-1">Danh sách đơn hàng gần đây của bạn.</p>
                     </div>
 
                     <div class="mt-4">

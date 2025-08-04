@@ -312,11 +312,11 @@
                                                     @if($history->status == 'created')
                                                         Đơn hàng đã được tạo
                                                     @elseif($history->status == 'pending')
-                                                        Đơn hàng đang chờ xử lý
+                                                        Đơn hàng đang xử lý
                                                     @elseif($history->status == 'processing')
                                                         Đơn hàng đang được giao
                                                     @elseif($history->status == 'completed')
-                                                        Đơn hàng đã hoàn thành
+                                                        Đơn hàng đã được giao
                                                     @elseif($history->status == 'cancelled')
                                                         Đơn hàng đã bị hủy
                                                     @elseif($history->status == 'payment_status_changed')

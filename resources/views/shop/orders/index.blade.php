@@ -22,7 +22,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mã đơn hàng</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ngày đặt</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tổng tiền</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trạng thái</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trạng thái đơn hàng</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Thao tác</th>
                             </tr>
                         </thead>
@@ -39,27 +39,23 @@
                                         <div class="text-sm text-gray-900">{{ number_format($order->total, 0, ',', '.') }}đ</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if($order->status === 'pending')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Đang chờ xử lý
-                                            </span>
-                                        @elseif($order->status === 'processing')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                Đang xử lý
-                                            </span>
-                                        @elseif($order->status === 'shipped')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
-                                                Đang giao hàng
-                                            </span>
-                                        @elseif($order->status === 'delivered')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Đã giao hàng
-                                            </span>
-                                        @elseif($order->status === 'cancelled')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                Đã hủy
-                                            </span>
-                                        @endif
+                                    @if($order->status == 'pending')
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            Đang xử lý
+                                        </span>
+                                    @elseif($order->status == 'processing')
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            Đang giao hàng
+                                        </span>
+                                    @elseif($order->status == 'completed')
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Đã giao hàng
+                                        </span>
+                                    @elseif($order->status == 'cancelled')
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            Đã hủy
+                                        </span>
+                                    @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('shop.orders.show', $order) }}" class="text-blue-600 hover:text-blue-900">
