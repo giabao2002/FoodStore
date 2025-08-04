@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 04, 2025 at 04:16 PM
+-- Generation Time: Aug 04, 2025 at 04:49 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -66,25 +66,6 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `description`, `image`, `is_acti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(2, '2025_08_04_104901_add_order_item_id_to_reviews_table', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
@@ -108,16 +89,6 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `order_number`, `name`, `email`, `phone`, `address`, `city`, `status`, `payment_method`, `payment_status`, `subtotal`, `shipping_fee`, `total`, `note`, `created_at`, `updated_at`) VALUES
-(1, 2, 'ORD-1754304670', 'Nguyễn Văn A', 'user1@gmail.com', '0123456789', 'Thanh Xuân, Hà Nội', 'Hà Nội', 'completed', 'momo', 1, 60000.00, 30000.00, 90000.00, 'Giao hàng cẩn thận', '2025-08-04 03:51:10', '2025-08-04 03:51:54'),
-(2, 2, 'ORD-1754306378', 'Nguyễn Văn A', 'user1@gmail.com', '0123456789', 'Thanh Xuân, Hà Nội', 'Hà Nội', 'completed', 'cod', 1, 80000.00, 30000.00, 110000.00, 'Giao hàng nhanh', '2025-08-04 04:19:38', '2025-08-04 08:29:08'),
-(3, 2, 'ORD-1754307800', 'Nguyễn Văn A', 'user1@gmail.com', '0123456789', 'Thanh Xuân, Hà Nội', 'Hà Nội', 'completed', 'bank', 1, 75000.00, 30000.00, 105000.00, 'Giao hàng cẩn thận', '2025-08-04 04:43:20', '2025-08-04 05:19:24'),
-(4, 2, 'ORD-1754320910', 'Nguyễn Văn A', 'user1@gmail.com', '0123456789', 'Thanh Xuân, Hà Nội', 'Hà Nội', 'cancelled', 'bank', 0, 25000.00, 30000.00, 55000.00, 'Giao hàng cẩn thận', '2025-08-04 08:21:50', '2025-08-04 08:22:26');
-
 -- --------------------------------------------------------
 
 --
@@ -135,26 +106,6 @@ CREATE TABLE `order_histories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `order_histories`
---
-
-INSERT INTO `order_histories` (`id`, `order_id`, `user_id`, `status`, `comment`, `data`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 'payment_status_changed', 'Đơn hàng đã được đánh dấu là đã thanh toán', '{\"payment_status\": true}', '2025-08-04 03:51:40', '2025-08-04 03:51:40'),
-(2, 1, NULL, 'processing', 'Trạng thái đơn hàng đã được thay đổi từ pending sang processing', '{\"new_status\": \"processing\", \"old_status\": \"pending\"}', '2025-08-04 03:51:44', '2025-08-04 03:51:44'),
-(3, 1, NULL, 'completed', 'Đơn hàng đã được đánh dấu là đã giao hàng (bulk update)', '{\"bulk_update\": true}', '2025-08-04 03:51:54', '2025-08-04 03:51:54'),
-(4, 3, NULL, 'pending', 'Đơn hàng đã được đánh dấu là đang xử lý (bulk update)', '{\"bulk_update\": true}', '2025-08-04 05:14:33', '2025-08-04 05:14:33'),
-(5, 3, NULL, 'processing', 'Đơn hàng đã được đánh dấu là đang giao hàng (bulk update)', '{\"bulk_update\": true}', '2025-08-04 05:14:51', '2025-08-04 05:14:51'),
-(6, 3, NULL, 'completed', 'Trạng thái đơn hàng đã được thay đổi từ processing sang completed', '{\"new_status\": \"completed\", \"old_status\": \"processing\"}', '2025-08-04 05:15:00', '2025-08-04 05:15:00'),
-(7, 3, NULL, 'payment_status_changed', 'Đơn hàng đã được đánh dấu là đã thanh toán', '{\"payment_status\": true}', '2025-08-04 05:17:41', '2025-08-04 05:17:41'),
-(8, 3, NULL, 'pending', 'Đơn hàng đã được đánh dấu là đang xử lý (bulk update)', '{\"bulk_update\": true}', '2025-08-04 05:17:53', '2025-08-04 05:17:53'),
-(9, 3, NULL, 'processing', 'Trạng thái đơn hàng đã được thay đổi từ đang xử lý sang đang giao hàng', '{\"new_status\": \"processing\", \"old_status\": \"pending\"}', '2025-08-04 05:17:59', '2025-08-04 05:17:59'),
-(10, 3, NULL, 'completed', 'Trạng thái đơn hàng đã được thay đổi từ đang giao hàng sang đã giao hàng', '{\"new_status\": \"completed\", \"old_status\": \"processing\"}', '2025-08-04 05:19:24', '2025-08-04 05:19:24'),
-(11, 4, 2, 'cancelled', 'Đơn hàng đã bị hủy bởi khách hàng', '{\"new_status\": \"cancelled\", \"old_status\": \"pending\"}', '2025-08-04 08:22:26', '2025-08-04 08:22:26'),
-(12, 2, NULL, 'processing', 'Trạng thái đơn hàng đã được thay đổi từ đang xử lý sang đang giao hàng (cập nhật hàng loạt)', '{\"bulk_update\": true}', '2025-08-04 08:28:28', '2025-08-04 08:28:28'),
-(13, 2, NULL, 'completed', 'Trạng thái đơn hàng đã được thay đổi từ đang giao hàng sang đã giao hàng', '{\"new_status\": \"completed\", \"old_status\": \"processing\"}', '2025-08-04 08:28:56', '2025-08-04 08:28:56'),
-(14, 2, NULL, 'payment_status_changed', 'Đơn hàng đã được đánh dấu là đã thanh toán', '{\"payment_status\": true}', '2025-08-04 08:29:08', '2025-08-04 08:29:08');
-
 -- --------------------------------------------------------
 
 --
@@ -171,19 +122,6 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`, `product_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 1, 35000.00, 'Bún chả Hà Nội', '2025-08-04 03:51:10', '2025-08-04 03:51:10'),
-(2, 1, 16, 1, 25000.00, 'Sinh tố bơ sữa', '2025-08-04 03:51:10', '2025-08-04 03:51:10'),
-(3, 2, 7, 1, 50000.00, 'Súp cua trứng bắc thảo', '2025-08-04 04:19:38', '2025-08-04 04:19:38'),
-(4, 2, 14, 1, 30000.00, 'Sữa tươi trân châu đường đen', '2025-08-04 04:19:38', '2025-08-04 04:19:38'),
-(5, 3, 7, 1, 50000.00, 'Súp cua trứng bắc thảo', '2025-08-04 04:43:20', '2025-08-04 04:43:20'),
-(6, 3, 16, 1, 25000.00, 'Sinh tố bơ sữa', '2025-08-04 04:43:20', '2025-08-04 04:43:20'),
-(7, 4, 16, 1, 25000.00, 'Sinh tố bơ sữa', '2025-08-04 08:21:50', '2025-08-04 08:21:50');
 
 -- --------------------------------------------------------
 
@@ -243,16 +181,6 @@ CREATE TABLE `reviews` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`id`, `user_id`, `product_id`, `order_item_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, NULL, 5, 'Món này khá ngon', '2025-08-04 04:30:06', '2025-08-04 04:40:54'),
-(2, 2, 16, 6, 4, 'Hơi ngọt quá', '2025-08-04 04:40:44', '2025-08-04 08:47:29'),
-(3, 2, 7, 5, 5, 'Súp hơi nhạt', '2025-08-04 08:32:30', '2025-08-04 08:49:37'),
-(4, 2, 14, 4, 5, 'Ngon nha', '2025-08-04 08:32:59', '2025-08-04 08:48:42');
-
 -- --------------------------------------------------------
 
 --
@@ -298,12 +226,6 @@ ALTER TABLE `carts`
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `categories_slug_unique` (`slug`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `orders`
@@ -368,12 +290,6 @@ ALTER TABLE `carts`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
