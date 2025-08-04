@@ -12,6 +12,24 @@ use Illuminate\Support\Facades\DB;
 class OrdersController extends Controller
 {
     /**
+     * Translate order status code to Vietnamese text
+     */
+    private function translateOrderStatus($status)
+    {
+        switch ($status) {
+            case 'pending':
+                return 'đang xử lý';
+            case 'processing':
+                return 'đang giao hàng';
+            case 'completed':
+                return 'đã giao hàng';
+            case 'cancelled':
+                return 'đã hủy';
+            default:
+                return $status;
+        }
+    }
+    /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
@@ -118,7 +136,6 @@ class OrdersController extends Controller
             'admin_comment' => 'nullable|string',
             'subtotal' => 'required|numeric|min:0',
             'shipping_fee' => 'required|numeric|min:0',
-            'discount' => 'required|numeric|min:0',
             'total' => 'required|numeric|min:0',
             'items' => 'required|array',
             'items.*.id' => 'required|exists:order_items,id',
@@ -143,7 +160,6 @@ class OrdersController extends Controller
             $order->admin_comment = $validated['admin_comment'];
             $order->subtotal = $validated['subtotal'];
             $order->shipping_fee = $validated['shipping_fee'];
-            $order->discount = $validated['discount'];
             $order->total = $validated['total'];
 
             $order->save();
@@ -160,11 +176,14 @@ class OrdersController extends Controller
 
             // Log status change if it changed
             if ($oldStatus !== $validated['status']) {
+                $oldStatusText = $this->translateOrderStatus($oldStatus);
+                $newStatusText = $this->translateOrderStatus($validated['status']);
+
                 OrderHistory::create([
                     'order_id' => $order->id,
                     'user_id' => auth()->id ?? null,
                     'status' => $validated['status'],
-                    'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatus} sang {$validated['status']}",
+                    'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatusText} sang {$newStatusText}",
                     'data' => [
                         'old_status' => $oldStatus,
                         'new_status' => $validated['status'],
@@ -214,11 +233,14 @@ class OrdersController extends Controller
             $order->save();
 
             // Log the status change
+            $oldStatusText = $this->translateOrderStatus($oldStatus);
+            $newStatusText = $this->translateOrderStatus($validated['status']);
+
             OrderHistory::create([
                 'order_id' => $order->id,
                 'user_id' => auth()->id ?? null,
                 'status' => $validated['status'],
-                'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatus} sang {$validated['status']}",
+                'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatusText} sang {$newStatusText}",
                 'data' => [
                     'old_status' => $oldStatus,
                     'new_status' => $validated['status'],
@@ -319,68 +341,96 @@ class OrdersController extends Controller
 
             switch ($action) {
                 case 'pending':
+                    // Get the original status for each order before updating
+                    $orders = Order::whereIn('id', $orderIds)->get(['id', 'status'])->keyBy('id');
+
                     Order::whereIn('id', $orderIds)->update(['status' => 'pending']);
 
                     // Log history for each order
                     foreach ($orderIds as $orderId) {
-                        OrderHistory::create([
-                            'order_id' => $orderId,
-                            'user_id' => auth()->id ?? null,
-                            'status' => 'pending',
-                            'comment' => 'Đơn hàng đã được đánh dấu là đang xử lý (bulk update)',
-                            'data' => ['bulk_update' => true],
-                        ]);
+                        if (isset($orders[$orderId])) {
+                            $oldStatusText = $this->translateOrderStatus($orders[$orderId]->status);
+
+                            OrderHistory::create([
+                                'order_id' => $orderId,
+                                'user_id' => auth()->id ?? null,
+                                'status' => 'pending',
+                                'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatusText} sang đang xử lý (cập nhật hàng loạt)",
+                                'data' => ['bulk_update' => true],
+                            ]);
+                        }
                     }
 
                     $message = "{$count} đơn hàng đã được đánh dấu là đang xử lý";
                     break;
 
                 case 'processing':
+                    // Get the original status for each order before updating
+                    $orders = Order::whereIn('id', $orderIds)->get(['id', 'status'])->keyBy('id');
+
                     Order::whereIn('id', $orderIds)->update(['status' => 'processing']);
 
                     // Log history for each order
                     foreach ($orderIds as $orderId) {
-                        OrderHistory::create([
-                            'order_id' => $orderId,
-                            'user_id' => auth()->id ?? null,
-                            'status' => 'processing',
-                            'comment' => 'Đơn hàng đã được đánh dấu là đang giao hàng (bulk update)',
-                            'data' => ['bulk_update' => true],
-                        ]);
+                        if (isset($orders[$orderId])) {
+                            $oldStatusText = $this->translateOrderStatus($orders[$orderId]->status);
+
+                            OrderHistory::create([
+                                'order_id' => $orderId,
+                                'user_id' => auth()->id ?? null,
+                                'status' => 'processing',
+                                'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatusText} sang đang giao hàng (cập nhật hàng loạt)",
+                                'data' => ['bulk_update' => true],
+                            ]);
+                        }
                     }
 
                     $message = "{$count} đơn hàng đã được đánh dấu là đang giao hàng";
                     break;
 
                 case 'completed':
+                    // Get the original status for each order before updating
+                    $orders = Order::whereIn('id', $orderIds)->get(['id', 'status'])->keyBy('id');
+
                     Order::whereIn('id', $orderIds)->update(['status' => 'completed']);
 
                     // Log history for each order
                     foreach ($orderIds as $orderId) {
-                        OrderHistory::create([
-                            'order_id' => $orderId,
-                            'user_id' => auth()->id ?? null,
-                            'status' => 'completed',
-                            'comment' => 'Đơn hàng đã được đánh dấu là đã giao hàng (bulk update)',
-                            'data' => ['bulk_update' => true],
-                        ]);
+                        if (isset($orders[$orderId])) {
+                            $oldStatusText = $this->translateOrderStatus($orders[$orderId]->status);
+
+                            OrderHistory::create([
+                                'order_id' => $orderId,
+                                'user_id' => auth()->id ?? null,
+                                'status' => 'completed',
+                                'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatusText} sang đã giao hàng (cập nhật hàng loạt)",
+                                'data' => ['bulk_update' => true],
+                            ]);
+                        }
                     }
 
                     $message = "{$count} đơn hàng đã được đánh dấu là đã giao hàng";
                     break;
 
                 case 'cancelled':
+                    // Get the original status for each order before updating
+                    $orders = Order::whereIn('id', $orderIds)->get(['id', 'status'])->keyBy('id');
+
                     Order::whereIn('id', $orderIds)->update(['status' => 'cancelled']);
 
                     // Log history for each order
                     foreach ($orderIds as $orderId) {
-                        OrderHistory::create([
-                            'order_id' => $orderId,
-                            'user_id' => auth()->id ?? null,
-                            'status' => 'cancelled',
-                            'comment' => 'Đơn hàng đã bị hủy (bulk update)',
-                            'data' => ['bulk_update' => true],
-                        ]);
+                        if (isset($orders[$orderId])) {
+                            $oldStatusText = $this->translateOrderStatus($orders[$orderId]->status);
+
+                            OrderHistory::create([
+                                'order_id' => $orderId,
+                                'user_id' => auth()->id ?? null,
+                                'status' => 'cancelled',
+                                'comment' => "Trạng thái đơn hàng đã được thay đổi từ {$oldStatusText} sang đã hủy (cập nhật hàng loạt)",
+                                'data' => ['bulk_update' => true],
+                            ]);
+                        }
                     }
 
                     $message = "{$count} đơn hàng đã bị hủy";

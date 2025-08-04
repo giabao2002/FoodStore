@@ -110,7 +110,6 @@ class OrderController extends Controller
                 'payment_method' => $request->payment_method,
                 'subtotal' => $subtotal,
                 'shipping_fee' => $shippingFee,
-                'discount' => 0,
                 'note' => $request->notes,
             ]);
 

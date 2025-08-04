@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -17,14 +18,23 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Product::withoutGlobalScope('active')->with('category');
+        // Sử dụng DB facade để join và tính tổng số lượng đã bán
+        $query = Product::withoutGlobalScope('active')
+            ->with('category')
+            ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
+            ->leftJoin('orders', 'order_items.order_id', '=', 'orders.id')
+            ->select(
+                'products.*',
+                DB::raw('IFNULL(SUM(CASE WHEN orders.status = "completed" THEN order_items.quantity ELSE 0 END), 0) as total_quantity')
+            )
+            ->groupBy('products.id');
 
         // Tìm kiếm theo từ khóa
         if ($request->has('search') && !empty($request->search)) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
+                $q->where('products.name', 'like', "%{$search}%")
+                  ->orWhere('products.description', 'like', "%{$search}%");
             });
         }
 
@@ -37,22 +47,28 @@ class ProductController extends Controller
         $sort = $request->input('sort', 'newest');
         switch ($sort) {
             case 'oldest':
-                $query->oldest();
+                $query->orderBy('products.created_at', 'asc');
                 break;
             case 'name_asc':
-                $query->orderBy('name', 'asc');
+                $query->orderBy('products.name', 'asc');
                 break;
             case 'name_desc':
-                $query->orderBy('name', 'desc');
+                $query->orderBy('products.name', 'desc');
                 break;
             case 'price_asc':
-                $query->orderBy('price', 'asc');
+                $query->orderBy('products.price', 'asc');
                 break;
             case 'price_desc':
-                $query->orderBy('price', 'desc');
+                $query->orderBy('products.price', 'desc');
+                break;
+            case 'sales_desc':
+                $query->orderBy('total_quantity', 'desc');
+                break;
+            case 'sales_asc':
+                $query->orderBy('total_quantity', 'asc');
                 break;
             default:
-                $query->latest();
+                $query->orderBy('products.created_at', 'desc');
         }
 
         $products = $query->paginate(10)->withQueryString();

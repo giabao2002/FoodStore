@@ -154,13 +154,6 @@
                                 <span>{{ number_format($order->shipping_fee, 0, ',', '.') }}đ</span>
                             </div>
 
-                            @if($order->discount > 0)
-                            <div class="flex justify-between py-2 text-sm text-green-600">
-                                <span class="font-medium">Giảm giá:</span>
-                                <span>-{{ number_format($order->discount, 0, ',', '.') }}đ</span>
-                            </div>
-                            @endif
-
                             <div class="flex justify-between py-2 text-lg font-bold">
                                 <span>Tổng cộng:</span>
                                 <span>{{ number_format($order->total, 0, ',', '.') }}đ</span>

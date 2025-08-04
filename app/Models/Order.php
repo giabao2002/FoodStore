@@ -22,7 +22,6 @@ class Order extends Model
         'payment_status',
         'subtotal',
         'shipping_fee',
-        'discount',
         'total',
         'note',
     ];

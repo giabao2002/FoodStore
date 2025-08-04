@@ -169,14 +169,6 @@
                             <div>
                                 <div class="space-y-4">
                                     <div>
-                                        <label for="discount" class="block text-sm font-medium text-gray-700 mb-1">Giảm giá</label>
-                                        <input type="number" id="discount" name="discount" value="{{ old('discount', $order->discount) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                        @error('discount')
-                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                    <div>
                                         <label for="total" class="block text-sm font-medium text-gray-700 mb-1">Tổng cộng</label>
                                         <input type="number" id="total" name="total" value="{{ old('total', $order->total) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md font-bold text-red-600">
                                         @error('total')
@@ -207,16 +199,14 @@
             const calculateTotal = function() {
                 const subtotal = parseFloat(document.getElementById('subtotal').value) || 0;
                 const shippingFee = parseFloat(document.getElementById('shipping_fee').value) || 0;
-                const discount = parseFloat(document.getElementById('discount').value) || 0;
 
-                const total = subtotal + shippingFee - discount;
+                const total = subtotal + shippingFee;
                 document.getElementById('total').value = Math.max(0, total);
             };
 
             // Add event listeners to inputs that affect the total
             document.getElementById('subtotal').addEventListener('change', calculateTotal);
             document.getElementById('shipping_fee').addEventListener('change', calculateTotal);
-            document.getElementById('discount').addEventListener('change', calculateTotal);
 
             // Recalculate when item prices or quantities change
             const itemPrices = document.querySelectorAll('input[name^="items"][name$="[price]"]');

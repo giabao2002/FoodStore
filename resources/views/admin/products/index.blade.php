@@ -51,6 +51,8 @@
                             <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Tên (Z-A)</option>
                             <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Giá (thấp-cao)</option>
                             <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Giá (cao-thấp)</option>
+                            <option value="sales_desc" {{ request('sort') == 'sales_desc' ? 'selected' : '' }}>Bán chạy nhất</option>
+                            <option value="sales_asc" {{ request('sort') == 'sales_asc' ? 'selected' : '' }}>Bán ít nhất</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <i class="fas fa-chevron-down text-xs"></i>
@@ -102,7 +104,9 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
-                                            <img class="h-10 w-10 rounded-md object-cover" src="{{ $product->image_url }}" alt="{{ $product->name }}">
+                                            <img class="h-10 w-10 rounded-md object-cover"
+                                                src="{{ $product->image ? asset('storage/' . $product->image) : asset('images/no-image.png') }}"
+                                                alt="{{ $product->name }}">
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">{{ $product->name }}</div>
@@ -117,12 +121,22 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900">{{ number_format($product->price) }}đ</div>
-                                    @if($product->old_price)
-                                        <div class="text-sm text-gray-500 line-through">{{ number_format($product->old_price) }}đ</div>
-                                    @endif
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $product->total_sold }}
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    @if($product->total_quantity > 10)
+                                        <div class="text-sm font-medium text-green-600 flex items-center">
+                                            <span class="mr-1">{{ number_format($product->total_quantity) }}</span>
+                                            <span class="bg-green-100 text-green-800 text-xs px-1.5 py-0.5 rounded-full">Bán chạy</span>
+                                        </div>
+                                    @elseif($product->total_quantity > 0)
+                                        <div class="text-sm font-medium text-green-600">
+                                            {{ number_format($product->total_quantity) }} sản phẩm
+                                        </div>
+                                    @else
+                                        <div class="text-sm text-gray-500">
+                                            0 sản phẩm
+                                        </div>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @if($product->is_active)

@@ -37,7 +37,7 @@
             <div class="flex justify-between items-center mb-8">
                 <div>
                     <h1 class="text-3xl font-bold text-gray-800">FoodStore</h1>
-                    <p class="text-gray-600">Cửa hàng thực phẩm trực tuyến</p>
+                    <p class="text-gray-600">Cửa hàng đồ ăn trực tuyến</p>
                 </div>
 
                 <div class="text-right">
@@ -96,12 +96,6 @@
                             <td colspan="4" class="py-2 px-4 border-b text-right"><strong>Phí vận chuyển:</strong></td>
                             <td class="py-2 px-4 border-b text-right">{{ number_format($order->shipping_fee) }}đ</td>
                         </tr>
-                        @if($order->discount > 0)
-                            <tr>
-                                <td colspan="4" class="py-2 px-4 border-b text-right"><strong>Giảm giá:</strong></td>
-                                <td class="py-2 px-4 border-b text-right text-green-600">-{{ number_format($order->discount) }}đ</td>
-                            </tr>
-                        @endif
                         <tr class="bg-gray-50">
                             <td colspan="4" class="py-2 px-4 border-b text-right"><strong>Tổng cộng:</strong></td>
                             <td class="py-2 px-4 border-b text-right font-bold">{{ number_format($order->total) }}đ</td>
@@ -148,17 +142,13 @@
                 <div class="flex justify-between">
                     <div>
                         <h4 class="font-bold mb-2">Thông tin liên hệ:</h4>
-                        <p class="text-sm">Email: support@foodstore.com</p>
-                        <p class="text-sm">Điện thoại: (028) 1234 5678</p>
-                        <p class="text-sm">Địa chỉ: 123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh</p>
+                        <p class="text-sm">Email: info@foodstore.com</p>
+                        <p class="text-sm">Điện thoại: (+84) 1234 5678</p>
+                        <p class="text-sm">Địa chỉ: 123 Đường ABC, Quận XYZ, Hà Nội</p>
                     </div>
 
                     <div class="text-right">
                         <p class="text-sm">Cảm ơn quý khách đã đặt hàng!</p>
-                        <p class="text-sm">Mã QR đơn hàng:</p>
-                        <div class="h-24 w-24 bg-gray-200 mx-auto mt-2 flex items-center justify-center">
-                            <span class="text-xs text-gray-500">QR Code</span>
-                        </div>
                     </div>
                 </div>
             </div>

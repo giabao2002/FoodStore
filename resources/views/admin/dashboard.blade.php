@@ -15,18 +15,18 @@
                     </div>
                 </div>
                 <div class="mt-4 flex items-center text-sm">
-                    @if($orderGrowth > 0)
-                    <span class="text-green-500 flex items-center">
-                        <i class="fas fa-arrow-up mr-1"></i> {{ $orderGrowth }}%
-                    </span>
+                    @if ($orderGrowth > 0)
+                        <span class="text-green-500 flex items-center font-medium">
+                            <i class="fas fa-arrow-up mr-1"></i> +{{ $orderGrowth }}%
+                        </span>
                     @elseif($orderGrowth < 0)
-                    <span class="text-red-500 flex items-center">
-                        <i class="fas fa-arrow-down mr-1"></i> {{ abs($orderGrowth) }}%
-                    </span>
+                        <span class="text-red-500 flex items-center font-medium">
+                            <i class="fas fa-arrow-down mr-1"></i> {{ abs($orderGrowth) }}%
+                        </span>
                     @else
-                    <span class="text-gray-500 flex items-center">
-                        <i class="fas fa-minus mr-1"></i> {{ $orderGrowth }}%
-                    </span>
+                        <span class="text-gray-500 flex items-center font-medium">
+                            <i class="fas fa-minus mr-1"></i> {{ $orderGrowth }}%
+                        </span>
                     @endif
                     <span class="text-gray-500 ml-2">so với tuần trước</span>
                 </div>
@@ -43,18 +43,18 @@
                     </div>
                 </div>
                 <div class="mt-4 flex items-center text-sm">
-                    @if($revenueGrowth > 0)
-                    <span class="text-green-500 flex items-center">
-                        <i class="fas fa-arrow-up mr-1"></i> {{ $revenueGrowth }}%
-                    </span>
+                    @if ($revenueGrowth > 0)
+                        <span class="text-green-500 flex items-center font-medium">
+                            <i class="fas fa-arrow-up mr-1"></i> +{{ $revenueGrowth }}%
+                        </span>
                     @elseif($revenueGrowth < 0)
-                    <span class="text-red-500 flex items-center">
-                        <i class="fas fa-arrow-down mr-1"></i> {{ abs($revenueGrowth) }}%
-                    </span>
+                        <span class="text-red-500 flex items-center font-medium">
+                            <i class="fas fa-arrow-down mr-1"></i> {{ abs($revenueGrowth) }}%
+                        </span>
                     @else
-                    <span class="text-gray-500 flex items-center">
-                        <i class="fas fa-minus mr-1"></i> {{ $revenueGrowth }}%
-                    </span>
+                        <span class="text-gray-500 flex items-center font-medium">
+                            <i class="fas fa-minus mr-1"></i> {{ $revenueGrowth }}%
+                        </span>
                     @endif
                     <span class="text-gray-500 ml-2">so với tuần trước</span>
                 </div>
@@ -71,18 +71,18 @@
                     </div>
                 </div>
                 <div class="mt-4 flex items-center text-sm">
-                    @if($customerGrowth > 0)
-                    <span class="text-green-500 flex items-center">
-                        <i class="fas fa-arrow-up mr-1"></i> {{ $customerGrowth }}%
-                    </span>
+                    @if ($customerGrowth > 0)
+                        <span class="text-green-500 flex items-center font-medium">
+                            <i class="fas fa-arrow-up mr-1"></i> +{{ $customerGrowth }}%
+                        </span>
                     @elseif($customerGrowth < 0)
-                    <span class="text-red-500 flex items-center">
-                        <i class="fas fa-arrow-down mr-1"></i> {{ abs($customerGrowth) }}%
-                    </span>
+                        <span class="text-red-500 flex items-center font-medium">
+                            <i class="fas fa-arrow-down mr-1"></i> {{ abs($customerGrowth) }}%
+                        </span>
                     @else
-                    <span class="text-gray-500 flex items-center">
-                        <i class="fas fa-minus mr-1"></i> {{ $customerGrowth }}%
-                    </span>
+                        <span class="text-gray-500 flex items-center font-medium">
+                            <i class="fas fa-minus mr-1"></i> {{ $customerGrowth }}%
+                        </span>
                     @endif
                     <span class="text-gray-500 ml-2">so với tuần trước</span>
                 </div>
@@ -112,35 +112,42 @@
             <div class="bg-white rounded-lg shadow-md">
                 <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="font-bold text-lg">Đơn hàng gần đây</h2>
-                    <a href="{{ route('admin.orders.index') }}" class="text-blue-600 hover:text-blue-800 text-sm">Xem tất cả</a>
+                    <a href="{{ route('admin.orders.index') }}" class="text-blue-600 hover:text-blue-800 text-sm">Xem
+                        tất cả</a>
                 </div>
 
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Mã đơn hàng
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Khách hàng
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Tổng tiền
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Trạng thái
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Ngày đặt
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($recentOrders as $order)
+                            @foreach ($recentOrders as $order)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="{{ route('admin.orders.show', $order) }}" class="text-blue-600 hover:text-blue-900">
+                                        <a href="{{ route('admin.orders.show', $order) }}"
+                                            class="text-blue-600 hover:text-blue-900">
                                             #{{ $order->order_number }}
                                         </a>
                                     </td>
@@ -149,23 +156,28 @@
                                         <div class="text-sm text-gray-500">{{ $order->email }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ number_format($order->total) }}đ</div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ number_format($order->total) }}đ</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if($order->status == 'pending')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                        @if ($order->status == 'pending')
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                 Đang xử lý
                                             </span>
                                         @elseif($order->status == 'processing')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 Đang giao hàng
                                             </span>
                                         @elseif($order->status == 'completed')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 Đã giao hàng
                                             </span>
                                         @elseif($order->status == 'cancelled')
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                 Đã hủy
                                             </span>
                                         @endif
@@ -179,7 +191,7 @@
                     </table>
                 </div>
 
-                @if($recentOrders->isEmpty())
+                @if ($recentOrders->isEmpty())
                     <div class="p-6 text-center text-gray-500">
                         Chưa có đơn hàng nào.
                     </div>
@@ -190,14 +202,17 @@
             <div class="bg-white rounded-lg shadow-md">
                 <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h2 class="font-bold text-lg">Sản phẩm bán chạy</h2>
-                    <a href="{{ route('admin.products.index') }}" class="text-blue-600 hover:text-blue-800 text-sm">Xem tất cả</a>
+                    <a href="{{ route('admin.products.index') }}" class="text-blue-600 hover:text-blue-800 text-sm">Xem
+                        tất cả</a>
                 </div>
-                @if($topProducts->isNotEmpty())
+                @if ($topProducts->isNotEmpty())
                     <div class="divide-y divide-gray-200">
-                        @foreach($topProducts as $product)
+                        @foreach ($topProducts as $product)
                             <div class="p-4 flex items-center">
                                 <div class="w-16 h-16 bg-gray-100 rounded-md overflow-hidden">
-                                    <img src="{{ $product->image_url ?? asset('images/default-product.jpg') }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                    <img class="h-16 w-16 rounded-md object-cover"
+                                        src="{{ $product->image ? asset('storage/' . $product->image) : asset('images/no-image.png') }}"
+                                        alt="{{ $product->name }}">
                                 </div>
                                 <div class="ml-4 flex-1">
                                     <h3 class="font-medium">{{ $product->name }}</h3>
@@ -237,79 +252,79 @@
     </div>
 
     @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Revenue Chart
-            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-            const revenueChart = new Chart(revenueCtx, {
-                type: 'line',
-                data: {
-                    labels: {!! json_encode($revenueChartData['labels']) !!},
-                    datasets: [{
-                        label: 'Doanh thu (VNĐ)',
-                        data: {!! json_encode($revenueChartData['data']) !!},
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 2,
-                        tension: 0.3,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Revenue Chart
+                const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+                const revenueChart = new Chart(revenueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: {!! json_encode($revenueChartData['labels']) !!},
+                        datasets: [{
+                            label: 'Doanh thu (VNĐ)',
+                            data: {!! json_encode($revenueChartData['data']) !!},
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        }]
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return new Intl.NumberFormat('vi-VN').format(value) + 'đ';
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return new Intl.NumberFormat('vi-VN').format(value) + 'đ';
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            });
+                });
 
-            // Order Status Chart
-            const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
-            const orderStatusChart = new Chart(orderStatusCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Đang xử lý', 'Đang giao hàng', 'Đã giao hàng', 'Đã hủy'],
-                    datasets: [{
-                        data: [
-                            {{ $orderStatusData['pending'] }},
-                            {{ $orderStatusData['processing'] }},
-                            {{ $orderStatusData['completed'] }},
-                            {{ $orderStatusData['cancelled'] }}
-                        ],
-                        backgroundColor: [
-                            'rgba(251, 191, 36, 0.8)',
-                            'rgba(59, 130, 246, 0.8)',
-                            'rgba(16, 185, 129, 0.8)',
-                            'rgba(239, 68, 68, 0.8)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right'
+                // Order Status Chart
+                const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+                const orderStatusChart = new Chart(orderStatusCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Đang xử lý', 'Đang giao hàng', 'Đã giao hàng', 'Đã hủy'],
+                        datasets: [{
+                            data: [
+                                {{ $orderStatusData['pending'] }},
+                                {{ $orderStatusData['processing'] }},
+                                {{ $orderStatusData['completed'] }},
+                                {{ $orderStatusData['cancelled'] }}
+                            ],
+                            backgroundColor: [
+                                'rgba(251, 191, 36, 0.8)',
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(239, 68, 68, 0.8)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right'
+                            }
                         }
                     }
-                }
+                });
             });
-        });
-    </script>
+        </script>
     @endpush
 </x-layouts.admin>

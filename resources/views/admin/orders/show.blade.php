@@ -236,16 +236,6 @@
                                 {{ number_format($order->shipping_fee) }}đ
                             </td>
                         </tr>
-                        @if($order->discount > 0)
-                            <tr>
-                                <td colspan="3" class="px-6 py-4 text-right text-sm font-medium text-green-600">
-                                    Giảm giá:
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
-                                    -{{ number_format($order->discount) }}đ
-                                </td>
-                            </tr>
-                        @endif
                         <tr class="bg-gray-100">
                             <td colspan="3" class="px-6 py-4 text-right text-sm font-bold">
                                 Tổng cộng:

@@ -35,9 +35,6 @@
 
                         <div class="mb-4">
                             <span class="text-2xl font-bold text-red-600">{{ number_format($product->price) }}đ</span>
-                            @if($product->old_price)
-                                <span class="ml-2 text-gray-500 line-through">{{ number_format($product->old_price) }}đ</span>
-                            @endif
                         </div>
 
                         <p class="text-gray-700 mb-6">{{ $product->description }}</p>
