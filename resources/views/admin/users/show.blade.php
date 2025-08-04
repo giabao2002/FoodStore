@@ -10,14 +10,17 @@
             <h1 class="text-2xl font-bold">Chi tiết người dùng</h1>
 
             <div class="flex space-x-2">
-                <a href="{{ route('admin.users.edit', $user) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
+                <a href="{{ route('admin.users.edit', $user) }}"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
                     <i class="fas fa-edit mr-2"></i> Chỉnh sửa
                 </a>
-                @if(\Illuminate\Support\Facades\Auth::id() != $user->id)
-                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
+                @if (\Illuminate\Support\Facades\Auth::id() != $user->id)
+                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST"
+                        onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center">
+                        <button type="submit"
+                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center">
                             <i class="fas fa-trash-alt mr-2"></i> Xóa
                         </button>
                     </form>
@@ -32,60 +35,39 @@
                     <h2 class="font-bold text-lg">Thông tin người dùng</h2>
                 </div>
                 <div class="p-6">
-                    <div class="flex items-center justify-center mb-6">
-                        <div class="h-24 w-24 rounded-full bg-gray-200 flex items-center justify-center text-2xl text-gray-600">
-                            {{ substr($user->name, 0, 1) }}
-                        </div>
-                    </div>
-
                     <div class="space-y-4">
                         <div>
-                            <span class="text-gray-600">ID:</span>
-                            <div class="font-medium">{{ $user->id }}</div>
+                            <span class="text-gray-600">ID: {{ $user->id }}</span>
                         </div>
                         <div>
-                            <span class="text-gray-600">Họ tên:</span>
-                            <div class="font-medium">{{ $user->name }}</div>
+                            <span class="text-gray-600">Họ tên: {{ $user->name }}</span>
                         </div>
                         <div>
-                            <span class="text-gray-600">Email:</span>
-                            <div>{{ $user->email }}</div>
+                            <span class="text-gray-600">Email: {{ $user->email }}</span>
                         </div>
                         <div>
-                            <span class="text-gray-600">Số điện thoại:</span>
-                            <div>{{ $user->phone ?? 'Chưa cập nhật' }}</div>
+                            <span class="text-gray-600">Số điện thoại: {{ $user->phone ?? 'Chưa cập nhật' }}</span>
                         </div>
                         <div>
-                            <span class="text-gray-600">Địa chỉ:</span>
-                            <div>{{ $user->address ?? 'Chưa cập nhật' }}</div>
+                            <span class="text-gray-600">Địa chỉ: {{ $user->address ?? 'Chưa cập nhật' }}</span>
                         </div>
                         <div>
-                            <span class="text-gray-600">Vai trò:</span>
-                            <div>
-                                @if($user->role == 'admin')
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                            <span class="text-gray-600">Vai trò:
+                                @if ($user->role == 'admin')
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
                                         Admin
                                     </span>
                                 @else
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                         Người dùng
                                     </span>
                                 @endif
-                            </div>
+                            </span>
                         </div>
                         <div>
-                            <span class="text-gray-600">Tài khoản tạo lúc:</span>
-                            <div>{{ $user->created_at->format('d/m/Y H:i') }}</div>
-                        </div>
-                        <div>
-                            <span class="text-gray-600">Vai trò:</span>
-                            <div>
-                                @if($user->role === 'admin')
-                                    <span class="text-purple-600 font-semibold">Admin</span>
-                                @else
-                                    <span class="text-blue-600">Người dùng</span>
-                                @endif
-                            </div>
+                            <span class="text-gray-600">Tài khoản tạo lúc: {{ $user->created_at->format('d/m/Y H:i') }}</span>
                         </div>
                     </div>
                 </div>
@@ -119,22 +101,25 @@
 
                         <div>
                             <div class="text-gray-600 text-sm font-medium mb-2">Tổng chi tiêu</div>
-                            <div class="text-2xl font-bold text-green-600">{{ number_format($orderStats['total_spent']) }}đ</div>
+                            <div class="text-2xl font-bold text-green-600">
+                                {{ number_format($orderStats['total_spent']) }}đ</div>
                         </div>
 
                         <div>
                             <div class="text-gray-600 text-sm font-medium mb-2">Đơn hàng gần đây</div>
-                            @if(count($recentOrders) > 0)
+                            @if (count($recentOrders) > 0)
                                 <div class="space-y-2">
-                                    @foreach($recentOrders as $order)
-                                        <a href="{{ route('admin.orders.show', $order) }}" class="block bg-gray-50 p-3 rounded-md hover:bg-gray-100">
+                                    @foreach ($recentOrders as $order)
+                                        <a href="{{ route('admin.orders.show', $order) }}"
+                                            class="block bg-gray-50 p-3 rounded-md hover:bg-gray-100">
                                             <div class="flex justify-between">
                                                 <div class="font-medium">#{{ $order->order_number }}</div>
-                                                <div class="text-gray-500 text-sm">{{ $order->created_at->format('d/m/Y') }}</div>
+                                                <div class="text-gray-500 text-sm">
+                                                    {{ $order->created_at->format('d/m/Y') }}</div>
                                             </div>
                                             <div class="flex justify-between mt-1">
                                                 <div class="text-gray-500 text-sm">
-                                                    @if($order->status == 'pending')
+                                                    @if ($order->status == 'pending')
                                                         <span class="text-yellow-600">Đang xử lý</span>
                                                     @elseif($order->status == 'processing')
                                                         <span class="text-blue-600">Đang giao hàng</span>
@@ -150,7 +135,8 @@
                                     @endforeach
                                 </div>
                                 <div class="mt-4">
-                                    <a href="{{ route('admin.orders.index', ['user_id' => $user->id]) }}" class="text-blue-600 hover:text-blue-800 text-sm">
+                                    <a href="{{ route('admin.orders.index', ['user_id' => $user->id]) }}"
+                                        class="text-blue-600 hover:text-blue-800 text-sm">
                                         Xem tất cả đơn hàng <i class="fas fa-arrow-right ml-1"></i>
                                     </a>
                                 </div>
@@ -168,13 +154,14 @@
                     <h2 class="font-bold text-lg">Đánh giá gần đây</h2>
                 </div>
                 <div class="p-6">
-                    @if(count($reviews) > 0)
+                    @if (count($reviews) > 0)
                         <div class="space-y-4">
-                            @foreach($reviews as $review)
+                            @foreach ($reviews as $review)
                                 <div class="bg-gray-50 p-4 rounded-md">
                                     <div class="flex justify-between">
                                         <div class="font-medium">{{ $review->product->name }}</div>
-                                        <div class="text-gray-500 text-sm">{{ $review->created_at->format('d/m/Y') }}</div>
+                                        <div class="text-gray-500 text-sm">{{ $review->created_at->format('d/m/Y') }}
+                                        </div>
                                     </div>
                                     <div class="flex items-center mt-1">
                                         <div class="flex text-yellow-400">
@@ -211,22 +198,28 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Mã đơn hàng
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Ngày đặt
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Trạng thái
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Thanh toán
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Tổng tiền
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Thao tác
                             </th>
                         </tr>
@@ -238,30 +231,35 @@
                                     <div class="text-sm font-medium text-gray-900">#{{ $order->order_number }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{ $order->created_at->format('d/m/Y H:i') }}</div>
+                                    <div class="text-sm text-gray-500">{{ $order->created_at->format('d/m/Y H:i') }}
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    @if($order->status == 'pending')
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                    @if ($order->status == 'pending')
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             Đang xử lý
                                         </span>
                                     @elseif($order->status == 'processing')
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                             Đang giao hàng
                                         </span>
                                     @elseif($order->status == 'completed')
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             Đã giao hàng
                                         </span>
                                     @elseif($order->status == 'cancelled')
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                             Đã hủy
                                         </span>
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-500">
-                                        @if($order->payment_method == 'cod')
+                                        @if ($order->payment_method == 'cod')
                                             <span>COD</span>
                                         @elseif($order->payment_method == 'bank')
                                             <span>Chuyển khoản</span>
@@ -269,7 +267,7 @@
                                             <span>MoMo</span>
                                         @endif
 
-                                        @if($order->payment_status)
+                                        @if ($order->payment_status)
                                             <span class="ml-1 text-green-600">(Đã thanh toán)</span>
                                         @else
                                             <span class="ml-1 text-yellow-600">(Chờ xác nhận)</span>
@@ -277,10 +275,12 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-gray-900">{{ number_format($order->total) }}đ</div>
+                                    <div class="text-sm font-medium text-gray-900">{{ number_format($order->total) }}đ
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="{{ route('admin.orders.show', $order) }}" class="text-blue-600 hover:text-blue-900">Chi tiết</a>
+                                    <a href="{{ route('admin.orders.show', $order) }}"
+                                        class="text-blue-600 hover:text-blue-900">Chi tiết</a>
                                 </td>
                             </tr>
                         @empty
@@ -294,7 +294,7 @@
                 </table>
             </div>
 
-            @if(count($orders) > 0)
+            @if (count($orders) > 0)
                 <div class="px-6 py-4 border-t border-gray-200">
                     {{ $orders->links() }}
                 </div>

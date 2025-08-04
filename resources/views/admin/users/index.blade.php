@@ -19,7 +19,7 @@
                         <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Tìm kiếm</label>
                         <div class="relative">
                             <input type="text" id="search" name="search" value="{{ request('search') }}" placeholder="Tên, email, số điện thoại..."
-                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 pr-10">
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                             @if(request('search'))
                                 <button type="button" class="clear-search absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700">
                                     <i class="fas fa-times"></i>
@@ -30,7 +30,7 @@
 
                     <div>
                         <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Vai trò</label>
-                        <select id="role" name="role" class="filter-auto-submit w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <select id="role" name="role" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                             <option value="">Tất cả vai trò</option>
                             <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                             <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>Người dùng</option>
@@ -39,7 +39,7 @@
 
                     <div>
                         <label for="sort" class="block text-sm font-medium text-gray-700 mb-1">Sắp xếp</label>
-                        <select id="sort" name="sort" class="filter-auto-submit w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <select id="sort" name="sort" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                             <option value="created_at-desc" {{ request('sort') == 'created_at-desc' ? 'selected' : '' }}>Mới nhất</option>
                             <option value="created_at-asc" {{ request('sort') == 'created_at-asc' ? 'selected' : '' }}>Cũ nhất</option>
                             <option value="name-asc" {{ request('sort') == 'name-asc' ? 'selected' : '' }}>Tên (A-Z)</option>

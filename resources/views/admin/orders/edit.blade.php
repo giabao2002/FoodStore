@@ -24,7 +24,7 @@
                             <div class="space-y-4">
                                 <div>
                                     <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Trạng thái đơn hàng</label>
-                                    <select id="status" name="status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                    <select id="status" name="status" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                         <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Đang xử lý</option>
                                         <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Đang giao hàng</option>
                                         <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Đã giao hàng</option>
@@ -37,7 +37,7 @@
 
                                 <div>
                                     <label for="payment_status" class="block text-sm font-medium text-gray-700 mb-1">Trạng thái thanh toán</label>
-                                    <select id="payment_status" name="payment_status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                    <select id="payment_status" name="payment_status" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                         <option value="0" {{ $order->payment_status == 0 ? 'selected' : '' }}>Chờ xác nhận</option>
                                         <option value="1" {{ $order->payment_status == 1 ? 'selected' : '' }}>Đã thanh toán</option>
                                     </select>
@@ -55,7 +55,7 @@
                             <div class="space-y-4">
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Họ tên người nhận</label>
-                                    <input type="text" id="name" name="name" value="{{ old('name', $order->name) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" id="name" name="name" value="{{ old('name', $order->name) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     @error('name')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                     @enderror
@@ -63,7 +63,7 @@
 
                                 <div>
                                     <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
-                                    <input type="text" id="phone" name="phone" value="{{ old('phone', $order->phone) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" id="phone" name="phone" value="{{ old('phone', $order->phone) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     @error('phone')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                     @enderror
@@ -71,7 +71,7 @@
 
                                 <div>
                                     <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Địa chỉ</label>
-                                    <input type="text" id="address" name="address" value="{{ old('address', $order->address) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" id="address" name="address" value="{{ old('address', $order->address) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     @error('address')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                     @enderror
@@ -79,7 +79,7 @@
 
                                 <div>
                                     <label for="city" class="block text-sm font-medium text-gray-700 mb-1">Tỉnh/Thành phố</label>
-                                    <input type="text" id="city" name="city" value="{{ old('city', $order->city) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    <input type="text" id="city" name="city" value="{{ old('city', $order->city) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                     @error('city')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                     @enderror
@@ -150,7 +150,7 @@
                                 <div class="space-y-4">
                                     <div>
                                         <label for="subtotal" class="block text-sm font-medium text-gray-700 mb-1">Tạm tính</label>
-                                        <input type="number" id="subtotal" name="subtotal" value="{{ old('subtotal', $order->subtotal) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <input type="number" id="subtotal" name="subtotal" value="{{ old('subtotal', $order->subtotal) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                         @error('subtotal')
                                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -158,7 +158,7 @@
 
                                     <div>
                                         <label for="shipping_fee" class="block text-sm font-medium text-gray-700 mb-1">Phí vận chuyển</label>
-                                        <input type="number" id="shipping_fee" name="shipping_fee" value="{{ old('shipping_fee', $order->shipping_fee) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                        <input type="number" id="shipping_fee" name="shipping_fee" value="{{ old('shipping_fee', $order->shipping_fee) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                                         @error('shipping_fee')
                                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -170,7 +170,7 @@
                                 <div class="space-y-4">
                                     <div>
                                         <label for="total" class="block text-sm font-medium text-gray-700 mb-1">Tổng cộng</label>
-                                        <input type="number" id="total" name="total" value="{{ old('total', $order->total) }}" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md font-bold text-red-600">
+                                        <input type="number" id="total" name="total" value="{{ old('total', $order->total) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 font-bold text-red-600">
                                         @error('total')
                                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                         @enderror
