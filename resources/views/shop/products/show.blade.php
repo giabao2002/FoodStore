@@ -30,6 +30,8 @@
                                     <i class="fas fa-star{{ $i <= $product->average_rating ? '' : '-o text-gray-300' }}"></i>
                                 @endfor
                             </div>
+                            <span class="text-gray-600 font-medium ml-1">{{ number_format($product->average_rating, 1) }}</span>
+                            <span class="text-gray-600 mx-1">•</span>
                             <span class="text-gray-600">{{ $product->review_count }} đánh giá</span>
                         </div>
 
@@ -140,10 +142,13 @@
                                             <div class="font-medium">{{ $review->user->name }}</div>
                                             <div class="text-sm text-gray-500">{{ $review->created_at->format('d/m/Y') }}</div>
                                         </div>
-                                        <div class="flex text-yellow-400">
-                                            @for ($i = 1; $i <= 5; $i++)
-                                                <i class="fas fa-star{{ $i <= $review->rating ? '' : '-o text-gray-300' }}"></i>
-                                            @endfor
+                                        <div class="flex items-center">
+                                            <div class="flex text-yellow-400">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <i class="fas fa-star{{ $i <= $review->rating ? '' : '-o text-gray-300' }}"></i>
+                                                @endfor
+                                            </div>
+                                            <span class="ml-2 text-gray-700 font-medium">{{ $review->rating }}.0</span>
                                         </div>
                                     </div>
                                     <p class="text-gray-700">{{ $review->comment }}</p>

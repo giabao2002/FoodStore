@@ -57,7 +57,8 @@
                     @endif
                 @endfor
             </div>
-            <span class="ml-1 text-sm text-gray-500">({{ $product->reviewCount }})</span>
+            <span class="ml-1 text-sm font-medium text-gray-700">{{ number_format($product->averageRating, 1) }}</span>
+            <span class="mx-1 text-sm text-gray-500">({{ $product->reviewCount }})</span>
         </div>
     </div>
 </div>
