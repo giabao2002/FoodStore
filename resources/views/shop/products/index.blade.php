@@ -1,5 +1,6 @@
 <x-layouts.app title="Danh sách sản phẩm">
     <div class="container mx-auto px-4 py-8">
+        <img src="{{ asset('images/banner.png') }}" alt="Banner" class="w-full object-cover mb-8 rounded-lg shadow-md" style="height: 450px; object-fit: cover;">
         <div class="flex flex-col md:flex-row md:space-x-6">
             <!-- Sidebar -->
             <div class="md:w-1/4 mb-6 md:mb-0">
