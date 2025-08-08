@@ -21,13 +21,12 @@ class ProductController extends Controller
         // Sử dụng DB facade để join và tính tổng số lượng đã bán
         $query = Product::withoutGlobalScope('active')
             ->with('category')
+            ->select('products.*')
+            ->selectRaw('IFNULL(SUM(CASE WHEN orders.status = "completed" THEN order_items.quantity ELSE 0 END), 0) as total_quantity')
             ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
             ->leftJoin('orders', 'order_items.order_id', '=', 'orders.id')
-            ->select(
-                'products.*',
-                DB::raw('IFNULL(SUM(CASE WHEN orders.status = "completed" THEN order_items.quantity ELSE 0 END), 0) as total_quantity')
-            )
-            ->groupBy('products.id');
+            ->groupBy('products.id', 'products.name', 'products.slug', 'products.description', 'products.price',
+                    'products.image', 'products.category_id', 'products.is_active', 'products.created_at', 'products.updated_at');
 
         // Tìm kiếm theo từ khóa
         if ($request->has('search') && !empty($request->search)) {
