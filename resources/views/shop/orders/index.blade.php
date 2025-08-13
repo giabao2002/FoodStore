@@ -70,6 +70,15 @@
                                                 </button>
                                             </form>
                                         @endif
+                                        @if($order->status === 'processing')
+                                            <form action="{{ route('shop.orders.complete', $order) }}" method="POST" class="inline-block ml-3">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="text-green-600 hover:text-green-900" onclick="return confirm('Xác nhận đã nhận được hàng?')">
+                                                    Đã nhận hàng
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

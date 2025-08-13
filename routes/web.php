@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/{order}', [OrderController::class, 'show'])->name('show');
         Route::put('/{order}/cancel', [OrderController::class, 'cancel'])->name('cancel');
+        Route::put('/{order}/complete', [OrderController::class, 'complete'])->name('complete');
     });
 
     // Đánh giá sản phẩm

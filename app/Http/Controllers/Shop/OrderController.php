@@ -203,4 +203,46 @@ class OrderController extends Controller
             return back()->with('error', 'Đã xảy ra lỗi khi hủy đơn hàng. Vui lòng thử lại.');
         }
     }
+
+    /**
+     * Xác nhận đã nhận hàng
+     */
+    public function complete($id)
+    {
+        $order = Order::where('user_id', Auth::id())
+            ->findOrFail($id);
+
+        // Chỉ cho phép xác nhận khi đơn hàng đang ở trạng thái "đang giao hàng"
+        if ($order->status !== 'processing') {
+            return back()->with('error', 'Không thể xác nhận đơn hàng ở trạng thái hiện tại.');
+        }
+
+        // Bắt đầu transaction
+        DB::beginTransaction();
+
+        try {
+            // Cập nhật trạng thái đơn hàng
+            $order->status = 'completed';
+            $order->save();
+
+            // Log the status change
+            OrderHistory::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'status' => 'completed',
+                'comment' => 'Đơn hàng đã được xác nhận giao thành công bởi khách hàng',
+                'data' => [
+                    'old_status' => 'processing',
+                    'new_status' => 'completed',
+                ],
+            ]);
+
+            DB::commit();
+
+            return back()->with('success', 'Đã xác nhận nhận hàng thành công.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Đã xảy ra lỗi khi xác nhận đơn hàng. Vui lòng thử lại.');
+        }
+    }
 }
