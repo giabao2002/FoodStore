@@ -74,7 +74,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const stars = document.querySelectorAll('.star-icon');
             const inputs = document.querySelectorAll('input[name="rating"]');
-            
+
             // Hiển thị sao ban đầu dựa trên giá trị đã chọn
             function updateStarsDisplay() {
                 const selectedValue = document.querySelector('input[name="rating"]:checked').value;
@@ -88,7 +88,7 @@
                     }
                 });
             }
-            
+
             // Cài đặt sự kiện cho các ngôi sao
             stars.forEach((star, index) => {
                 // Khi di chuột qua sao
@@ -103,14 +103,14 @@
                         }
                     });
                 });
-                
+
                 // Khi click vào sao
                 star.addEventListener('click', () => {
                     inputs[index].checked = true;
                     updateStarsDisplay();
                 });
             });
-            
+
             // Xử lý khi di chuột ra khỏi container
             document.querySelector('.rating-container').addEventListener('mouseleave', updateStarsDisplay);
         });

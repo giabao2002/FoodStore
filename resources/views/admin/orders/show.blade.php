@@ -14,7 +14,7 @@
                     <i class="fas fa-print mr-2"></i> In đơn hàng
                 </a>
                 <a href="{{ route('admin.orders.edit', $order) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
-                    <i class="fas fa-edit mr-2"></i> Cập nhật trạng thái
+                    <i class="fas fa-edit mr-2"></i> Cập nhật đơn hàng
                 </a>
             </div>
         </div>

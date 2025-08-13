@@ -85,7 +85,7 @@
                                     <i class="fas fa-money-bill-wave text-green-600 mr-2"></i>
                                     <div>
                                         <p class="font-medium">Thanh toán khi nhận hàng (COD)</p>
-                                        <p class="text-gray-500 text-sm">Thanh toán bằng tiền mặt khi nhận hàng</p>
+                                        <p class="text-gray-500 text-sm">Thanh toán sau khi nhận hàng</p>
                                     </div>
                                 </label>
                             </div>
@@ -96,7 +96,7 @@
                                     <i class="fas fa-university text-blue-600 mr-2"></i>
                                     <div>
                                         <p class="font-medium">Chuyển khoản ngân hàng</p>
-                                        <p class="text-gray-500 text-sm">Thông tin chuyển khoản sẽ được gửi qua email</p>
+                                        <p class="text-gray-500 text-sm">Thanh toán qua tài khoản ngân hàng</p>
                                     </div>
                                 </label>
                             </div>
