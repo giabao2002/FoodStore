@@ -82,4 +82,12 @@ class Order extends Model
     {
         return $this->status === 'completed';
     }
+
+    /**
+     * Lấy lịch sử đơn hàng
+     */
+    public function orderHistories()
+    {
+        return $this->hasMany(OrderHistory::class);
+    }
 }

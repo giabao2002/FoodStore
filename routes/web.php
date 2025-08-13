@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\OrdersController as AdminOrdersController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
@@ -88,16 +88,16 @@ Route::prefix('admin')->middleware(['auth', \App\Http\Middleware\AdminMiddleware
     Route::post('/products/delete-gallery-image', [AdminProductController::class, 'deleteGalleryImage'])->name('products.delete-gallery-image');
 
     // Quản lý đơn hàng
-    Route::get('/orders', [AdminOrdersController::class, 'index'])->name('orders.index');
-    Route::get('/orders/{order}', [AdminOrdersController::class, 'show'])->name('orders.show');
-    Route::get('/orders/{order}/edit', [AdminOrdersController::class, 'edit'])->name('orders.edit');
-    Route::put('/orders/{order}', [AdminOrdersController::class, 'update'])->name('orders.update');
-    Route::patch('/orders/{order}/status', [AdminOrdersController::class, 'updateStatus'])->name('orders.update-status');
-    Route::patch('/orders/{order}/mark-paid', [AdminOrdersController::class, 'markPaid'])->name('orders.mark-paid');
-    Route::patch('/orders/{order}/mark-unpaid', [AdminOrdersController::class, 'markUnpaid'])->name('orders.mark-unpaid');
-    Route::post('/orders/bulk-update', [AdminOrdersController::class, 'bulkUpdate'])->name('orders.bulk-update');
-    Route::post('/orders/bulk-action', [AdminOrdersController::class, 'bulkAction'])->name('orders.bulk-action');
-    Route::get('/orders/{order}/print', [AdminOrdersController::class, 'print'])->name('orders.print');
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/{order}/edit', [AdminOrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
+    Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
+    Route::patch('/orders/{order}/mark-paid', [AdminOrderController::class, 'markPaid'])->name('orders.mark-paid');
+    Route::patch('/orders/{order}/mark-unpaid', [AdminOrderController::class, 'markUnpaid'])->name('orders.mark-unpaid');
+    Route::post('/orders/bulk-update', [AdminOrderController::class, 'bulkUpdate'])->name('orders.bulk-update');
+    Route::post('/orders/bulk-action', [AdminOrderController::class, 'bulkAction'])->name('orders.bulk-action');
+    Route::get('/orders/{order}/print', [AdminOrderController::class, 'print'])->name('orders.print');
 
     // Quản lý người dùng
     Route::resource('users', UserController::class);
