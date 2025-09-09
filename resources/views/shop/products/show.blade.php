@@ -49,7 +49,7 @@
                                 <button type="button" class="decrement-btn px-3 py-2 text-gray-600 hover:bg-gray-100 focus:outline-none">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                                <input type="number" name="quantity" value="1" min="1" max="10" class="w-12 text-center border-0 focus:outline-none">
+                                <input type="number" name="quantity" value="1" min="1" class="w-12 text-center border-0 focus:outline-none">
                                 <button type="button" class="increment-btn px-3 py-2 text-gray-600 hover:bg-gray-100 focus:outline-none">
                                     <i class="fas fa-plus"></i>
                                 </button>
@@ -194,9 +194,7 @@
 
             incrementBtn.addEventListener('click', function() {
                 const currentValue = parseInt(quantityInput.value);
-                if (currentValue < 10) {
-                    quantityInput.value = currentValue + 1;
-                }
+                quantityInput.value = currentValue + 1;
             });
 
             // Tabs
